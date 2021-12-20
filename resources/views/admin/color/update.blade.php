@@ -3,7 +3,7 @@
 @section("title","category")
  
 <div class="col-md-6 offset-md-3 mt-5">
-    <form id="" action="{{url('category_update')}}" method ="post" class="jumbotron" enctype="multipart/form-data">
+    <form id="" action="{{route('category_update')}}" method ="post" class="jumbotron" enctype="multipart/form-data">
       <h4 class="text-center">Update Category</h4> 
       @csrf
       <div class="form-group">

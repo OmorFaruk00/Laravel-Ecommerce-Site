@@ -11,7 +11,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900|Montserrat:400,500,700,900" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('admin_asset/css/font-awesome.css')}}">       
-    <link rel="stylesheet" href="{{asset('admin_asset/css/style.css')}}">    
+    <link rel="stylesheet" href="{{asset('admin_asset/css/style.css')}}"> 
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>   
 </head>
 <body id="main_container">
     <input type="hidden" id="session" value="mosiur">
@@ -44,6 +45,7 @@
                         <li><a href="{{url('/dashboard')}}">Dashboard</a></li>
                         <li><a href="{{url('/category/show')}}">Category</a></li>
                         <li><a href="{{url('/post/list')}}">Manage Post</a></li>                        
+                        <li><a href="{{url('/size/show')}}">Manage Size</a></li>                        
                         
                     </ul>
                 </div>

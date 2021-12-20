@@ -17,10 +17,11 @@ class CategoryController extends Controller
             
         ]);
        
-        $model = new category();
-        $model->name = $request->post('category_name');
-        $model->slug = $request->post('slug');
-        $model->save();
+        $data = new category();
+        $data->name = $request->post('category_name');
+        $data->slug = $request->post('slug');
+        $data->status = 1;
+        $data->save();
         $request->session()->flash('msg', 'Category Insert Successfully');
         return Redirect('/category/show');
     }
@@ -53,9 +54,17 @@ class CategoryController extends Controller
     
     public function destroy(Request $request, $id)
     {
-        $result = category::find($id);
-        $result->delete();
+        $data = category::find($id);
+        $data->delete();
         $request->session()->flash('msg', 'Category Delete Successfully');
+        return Redirect('/category/show');
+    }
+    public function status(Request $request, $status, $id)    
+    {        
+        $data = category::find($id);        
+        $data->status=$status;
+        $data->save();
+        $request->session()->flash('msg', 'Status Change Successfully');
         return Redirect('/category/show');
     }
 }

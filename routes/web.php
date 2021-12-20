@@ -19,14 +19,27 @@ Route::view("admin","admin/login");
 Route::post("login_submit","AdminController@login");
 
 Route::group(['middleware'=>['admin_auth']], function(){
+	Route::view("dashboard","admin/dashboard/show");
 	Route::get("category/show","CategoryController@show");
 	Route::view("category/add","admin/category/add");
-	Route::post("category_add","CategoryController@store")->name('category_add');
+	Route::post("category_add","CategoryController@store");
 	Route::get("category/edit/{id}","CategoryController@edit_data");
-	Route::post("category_update","CategoryController@update")->name('category_update');
+	Route::post("category_update","CategoryController@update");
 	Route::get("category/delete/{id}","CategoryController@destroy");
-    Route::view('edit','admin/category/update');
-	
+	Route::get("category/status/{id}/{status}","CategoryController@status");
+    
+	Route::get("size/show","SizeController@show");
+	Route::view("size/add","admin/size/add");
+	Route::post("size_add","SizeController@store");
+	Route::get("size/edit/{id}","SizeController@edit_data");
+	Route::post("size_update","SizeController@update");
+	Route::get("size/delete/{id}","SizeController@destroy");
+	Route::get("size/status/{id}/{status}","SizeController@status");
+
+
+
+
+
 	// Route::get("post/list","post@show_post");
 	// Route::view("post/add","admin/post/add_post");
 	// Route::post("post_submit","post@add_post");
