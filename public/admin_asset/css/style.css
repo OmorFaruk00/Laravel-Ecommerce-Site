@@ -95,7 +95,7 @@ ul{
 /* ========================= */
 
 #admin-header{
-    background: linear-gradient(to bottom, #033E3E, #033E3E);
+    background-color: #006666;
     padding: 10px 0 8px;
     box-shadow: 0 0 30px rgba(0,0,0,0.15);
     position: relative;
@@ -154,12 +154,12 @@ ul{
 /* ===================== */
 
 #admin-menu{    
-    background-color: #033E3E !important;
+    background-color: #f2f2f2 !important;
     padding: 20px 10px;
     min-height: 700px;
 }
 #admin-menu .menu-list li a{
-    color: #fff;
+    color: #000 ;
     font-size: 15px;
     font-weight: 600;
     text-transform: uppercase;
@@ -169,9 +169,18 @@ ul{
     transition: all 0.3s;
 }
 
-#admin-menu .menu-list li.active a,
+/* #admin-menu .menu-list li.active a,
 #admin-menu .menu-list li a:hover{
     background-color: rgba(255,255,255,0.2);
    
+} */
+#admin-wrapper .menu-list li a:hover{
+    color: red !important;
+   
+}
+.menu_select{    
+    background-color: #006666;
+    border-radius: 10px;   
+
 }
 

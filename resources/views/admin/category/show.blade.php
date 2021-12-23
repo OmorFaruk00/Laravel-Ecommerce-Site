@@ -1,14 +1,14 @@
 @extends('admin/layout')
-@section('page_title', 'Category')
+@section("page_title","Category")
+@section("category_select",'menu_select')
 @section("container")
-
 <div class="p-5">
   <div class="d-flex justify-content-between mt-3 mb-3">
-  <h2>Category</h2>
-  <h4 class="text-success" id="alert_msg">{{session('msg')}}</h4>
-  <a class="btn btn-info" href="{{url('category/add')}}">Add Category</a>  
-</div>
-<table class="table table-striped text-center">
+    <h2>Category</h2>
+    <h4 class="text-success" id="alert_msg">{{session('msg')}}</h4>
+    <a class="btn btn-info" href="{{url('category/add')}}">Add Category</a>  
+  </div>
+  <table class="table table-striped text-center">
     <thead class="bg-dark text-white">
       <tr>
         <th>ID</th>
@@ -22,8 +22,7 @@
       <tr>
         <td>{{$list->id}}</td>
         <td>{{$list->name}}</td>
-        <td>{{$list->slug}}</td>      
-        
+        <td>{{$list->slug}}</td>              
         <td>
           <a href="{{url('category/edit/'.$list->id)}}" class="btn btn-primary" ><i class="fas fa-edit"></i></a>
           <a href="{{url('category/delete/'.$list->id)}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
@@ -32,21 +31,18 @@
           @elseif($list->status == 0)
           <a href="{{url('category/status/1/'.$list->id)}}" class="btn btn-danger"><i class="fas fa-times-circle"></i></a>
           @endif
-        </td> 
-         
-        
+        </td>                
       </tr>
       @endforeach
-    </tbody>
-    
+    </tbody>   
   </table>
 </div>
-  <script>
-    $( document ).ready(function() {
-      setTimeout(function(){
-        $("#alert_msg").remove();
-      },2000);
+<script>
+  $( document ).ready(function() {
+    setTimeout(function(){
+      $("#alert_msg").remove();
+    },2000);
     
-});
-  </script>
-  @endsection
+  });
+</script>
+@endsection

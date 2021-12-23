@@ -19,14 +19,13 @@
     <div id="admin-header" class="fixed-top">
         <div class="container ">
             <div class="row">
-                <div class="col-md-10">
-                    
-                    <h2 class="text-white">MY Blog</h2>
+                <div class="col-md-10">                    
+                    <h2 class="text-white">Logo</h2>
                 </div>
                 <div class="col-md-offset-3 col-md-2">                     
                     <div class="dropdown ">                       
                         <a href="" class="dropdown-toggle logout" data-toggle="dropdown">
-                            <span class="caret"></span>
+                            <span class="caret">Hi Admin</span>
                         </a>
                         <ul class="dropdown-menu pl-3" id="dropdown-menu">
                             <li><a href="change_password.php" >Change Password</a></li>
@@ -42,10 +41,10 @@
             <div class="row">
                 <div class="col-md-2 col-sm-3" id="admin-menu">
                     <ul class="menu-list">
-                        <li><a href="{{url('/dashboard')}}">Dashboard</a></li>
-                        <li><a href="{{url('/category/show')}}">Category</a></li>
-                        <li><a href="{{url('/post/list')}}">Manage Post</a></li>                        
-                        <li><a href="{{url('/size/show')}}">Manage Size</a></li>                        
+                        <li class="@yield('dashboard_select')"><a href="{{url('/dashboard')}}"><i class="fas fa-columns mr-2"></i>Dashboard</a></li>                        
+                        <li class="@yield('category_select')"><a href="{{url('/category/show')}}"><i class="fas fa-align-justify mr-2"></i>Category</a></li>
+                        <li class="@yield('product_select')"><a href="{{url('/product/show')}}"><i class="fab fa-product-hunt mr-2"></i>Product</a></li>                        
+                        <li class="@yield('size_select')"><a href="{{url('/size/show')}}"><i class="fas fa-text-size mr-2"></i>Size</a></li>                        
                         
                     </ul>
                 </div>
@@ -56,8 +55,6 @@
             </div>
         </div>
     </div>    
-    <script src="{{asset('admin_asset/js/admin_menu.js')}}">
-        
-    </script> 
+    <script src="{{asset('admin_asset/js/admin_menu.js')}}"></script>           
 </body>
 </html>

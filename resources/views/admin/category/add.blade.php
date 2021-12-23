@@ -1,6 +1,6 @@
 @extends('admin/layout')
 @section("container")
-@section("title","category")
+@section("category_select")
 <div class="col-md-6 offset-md-3 mt-5">
     <form id="" action="{{url('category_add')}}" method ="post" class="jumbotron" enctype="multipart/form-data">
       <h4 class="text-center">Add Category</h4> 

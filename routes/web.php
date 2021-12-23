@@ -36,6 +36,15 @@ Route::group(['middleware'=>['admin_auth']], function(){
 	Route::get("size/delete/{id}","SizeController@destroy");
 	Route::get("size/status/{id}/{status}","SizeController@status");
 
+	Route::get('product/show','ProductController@show');
+	Route::get('product/add','ProductController@add');
+	Route::post("product_add","ProductController@store");
+	Route::get("product/edit/{id}","ProductController@edit_data");
+	Route::post("product_update","ProductController@update");
+	Route::get("product/delete/{id}","ProductController@destroy");
+	Route::get("product/status/{id}/{status}","ProductController@status");
+
+
 
 
 
