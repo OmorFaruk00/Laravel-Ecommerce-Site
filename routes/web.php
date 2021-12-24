@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+Route::get("/", "FrontController@index");
 
 Route::view("admin","admin/login");
 Route::post("login_submit","AdminController@login");
@@ -45,7 +45,7 @@ Route::group(['middleware'=>['admin_auth']], function(){
 	Route::get("product/status/{id}/{status}","ProductController@status");
 
 
-
+    
 
 
 
