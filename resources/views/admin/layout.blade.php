@@ -43,7 +43,9 @@
                     <ul class="menu-list">
                         <li class="@yield('dashboard_select')"><a href="{{url('/dashboard')}}"><i class="fas fa-columns mr-2"></i>Dashboard</a></li>                        
                         <li class="@yield('category_select')"><a href="{{url('/category/show')}}"><i class="fas fa-align-justify mr-2"></i>Category</a></li>
-                        <li class="@yield('product_select')"><a href="{{url('/product/show')}}"><i class="fab fa-product-hunt mr-2"></i>Product</a></li>                        
+                        <li class="@yield('product_select')"><a href="{{url('/product/show')}}"><i class="fab fa-product-hunt mr-2"></i>Product</a></li>
+                        <li class="@yield('brand_select')"><a href="{{url('brand/show')}}"><i class="fas fa-band-aid mr-2"></i>Brand</a></li>
+                        <li class="@yield('banner_select')"><a href="{{url('/banner/show')}}"><i class="fas fa-pennant mr-2"></i>Banner</a></li>                        
                         <li class="@yield('size_select')"><a href="{{url('/size/show')}}"><i class="fas fa-text-size mr-2"></i>Size</a></li>                        
                         
                     </ul>

@@ -44,17 +44,25 @@ Route::group(['middleware'=>['admin_auth']], function(){
 	Route::get("product/delete/{id}","ProductController@destroy");
 	Route::get("product/status/{id}/{status}","ProductController@status");
 
+    Route::get('brand/show','BrandController@show');
+	Route::view("brand/add","admin/brand/add");
+	Route::post("brand_add","BrandController@store");
+	Route::get("brand/edit/{id}","BrandController@edit_data");
+	Route::post("brand_update","BrandController@update");
+	Route::get("brand/delete/{id}","BrandController@destroy");
+	Route::get("brand/status/{id}/{status}","BrandController@status");
 
-    
+    Route::get('banner/show','BannerController@show');
+	Route::view("banner/add","admin/banner/add");
+	Route::post("banner_add","BannerController@store");
+	Route::get("banner/edit/{id}","BannerController@edit_data");
+	Route::post("banner_update","BannerController@update");
+	Route::get("banner/delete/{id}","BannerController@destroy");
+	Route::get("banner/status/{id}/{status}","BannerController@status");
 
 
 
-	// Route::get("post/list","post@show_post");
-	// Route::view("post/add","admin/post/add_post");
-	// Route::post("post_submit","post@add_post");
-	// Route::get("post/update/{id}","post@edit_post")->name('post/update');
-	// Route::post("post_update/{id}","post@update_post");
-	// Route::get("post/delete/{id}","post@delete_post");
+	
 });
 
 Route::get('logout', function () {

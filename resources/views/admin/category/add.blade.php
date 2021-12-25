@@ -1,5 +1,5 @@
 @extends('admin/layout')
-@section("category_select")
+@section("page_title","Category")
 @section("container")
 
 <form id="" action="{{url('category_add')}}" method ="post"  enctype="multipart/form-data">
@@ -23,7 +23,7 @@
          <select name="parent_category" id="" class="form-control">
            <option value="">Select Category</option>
            @foreach($result as $list)
-           <option value="{{$list->name}}">{{$list->name}}</option>
+           <option value="{{$list->id}}">{{$list->name}}</option>
            @endforeach           
          </select>         
       </div>       

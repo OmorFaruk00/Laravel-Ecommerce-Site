@@ -1,6 +1,6 @@
 @extends('admin/layout')
 @section("container")
-@section("title","category")
+@section("page_title","Category")
 <form id="" action="{{url('category_update')}}" method ="post"  enctype="multipart/form-data">  
   @csrf
   <div class="col-md-6 offset-md-3 mt-3 jumbotron">
