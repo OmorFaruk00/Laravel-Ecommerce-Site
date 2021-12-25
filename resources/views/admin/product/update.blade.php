@@ -30,7 +30,7 @@
          <option value="">Select Category</option>
          @foreach($category as $list)
          @if($data['category_id'] == $list->id)
-         <option selected value="{{$list->id}}">{{$list->name}}</option> -->
+         <option selected value="{{$list->id}}">{{$list->name}}</option> 
        </option>
        @else
        <option value="{{$list->id}}">{{$list->name}}</option>

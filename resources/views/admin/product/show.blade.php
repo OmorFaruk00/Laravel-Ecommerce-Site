@@ -13,8 +13,7 @@
         <th>ID</th>
         <th>Title</th>
         <th>Cat_id</th>        
-        <th>Slug</th>
-        <th>Short Desc</th>
+        <th>Slug</th>        
         <th>Model</th>        
         <th>Brand</th>        
         <th>Qty</th>        
@@ -29,11 +28,10 @@
         <td>{{$list->id}}</td>
         <td>{{$list->title}}</td>
         <td>{{$list->category_id}}</td>
-        <td>{{$list->slug}}</td>
-        <td>{{$list->short_desc}}</td>
+        <td>{{$list->slug}}</td>        
         <td>{{$list->model}}</td>
         <td>{{$list->brand}}</td>
-        <td>{{$list->Qty}}</td>
+        <td>{{$list->qty}}</td>
         <td>{{$list->price}}</td>
         <td> <img src="{{asset('product_img/'.$list->image)}}" alt="image" width="100px" height="100px"></td>
          <td>

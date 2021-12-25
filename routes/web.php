@@ -21,7 +21,7 @@ Route::post("login_submit","AdminController@login");
 Route::group(['middleware'=>['admin_auth']], function(){
 	Route::view("dashboard","admin/dashboard/show");
 	Route::get("category/show","CategoryController@show");
-	Route::view("category/add","admin/category/add");
+	Route::get("category/add","CategoryController@add");
 	Route::post("category_add","CategoryController@store");
 	Route::get("category/edit/{id}","CategoryController@edit_data");
 	Route::post("category_update","CategoryController@update");

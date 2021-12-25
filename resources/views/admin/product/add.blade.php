@@ -24,15 +24,13 @@
     <div class="row">
       <div class="col-md-6">
         <div class="form-group">
-          <label>Category</label>
-          
+          <label>Category</label>          
           <select name="category" id="" class="form-control">
            <span class="text-danger">@error('category') {{$message}} @enderror</span>
-           <option value="">Select Category</option>
+           <option value="0">Select Category</option>
            @foreach($result as $list)
            <option value="{{$list->id}}">{{$list->name}}</option>
-           @endforeach
-           
+           @endforeach           
          </select>
        </div>
      </div>
