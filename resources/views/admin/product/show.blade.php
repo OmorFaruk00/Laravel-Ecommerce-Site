@@ -30,7 +30,7 @@
         <td>{{$list->category_id}}</td>
         <td>{{$list->slug}}</td>        
         <td>{{$list->model}}</td>
-        <td>{{$list->brand}}</td>
+        <td>{{$list->brand_id}}</td>
         <td>{{$list->qty}}</td>
         <td>{{$list->price}}</td>
         <td> <img src="{{asset('product_img/'.$list->image)}}" alt="image" width="100px" height="100px"></td>
