@@ -225,14 +225,3 @@
   });
 </script>
 @endsection
-<div class="col-md-3">
-  <div class="form-group">
-    <label for="">Size</label>
-    <select name="size" id="" class="form-control">         
-     <option value="0">Select Size</option>
-     @foreach($size as $list)
-     <option value="{{$list->id}}">{{$list->size}}</option>
-     @endforeach           
-   </select>
- </div>
-</div>
