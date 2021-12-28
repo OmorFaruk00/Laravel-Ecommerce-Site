@@ -4,7 +4,10 @@
 
 <form id="" action="{{url('product_add')}}" method ="post" class="" enctype="multipart/form-data">
   <div class="jumbotron">
-    <h4 class="text-center mb-4">Add product</h4> 
+    <h4 class="text-center">Add product</h4> 
+    <div class="d-flex justify-content-end mt-3">
+      <a href="{{url('product/show')}}" class="btn btn-danger"><i class="fas fa-undo-alt fa-1x mr-2"></i>Back</a>
+    </div>
     @csrf
     <div class="row">
       <div class="col-md-4">
@@ -75,18 +78,10 @@
   </div>
   <div class="col-md-4">
     <div class="form-group">
-      <label>Qty</label>
-      <input type="text" class="form-control" name="qty">
-      <span class="text-danger">@error('qty') {{$message}} @enderror</span>
+      <label>Warrenty</label>
+      <textarea type="text" class="form-control" name="warrenty"></textarea>      
     </div>
-  </div>
-  <div class="col-md-4">
-    <div class="form-group">
-      <label>Price</label>
-      <input type="text" class="form-control" name="price"></input>
-      <span class="text-danger">@error('price') {{$message}} @enderror</span>
-    </div>
-  </div>
+  </div>  
   <div class="col-md-4">
     <div class="form-group">
       <label >Lead Time</label>
@@ -134,21 +129,19 @@
 
 <!-- //product attr  -->
 <h2 class="text-center mb-2">Product Attribute</h2>
-<div id="attr_box">
-  <div class="jumbotron">  
+<div id="attr_box" class="">  
+  <div class="jumbotron">   
     <div class="row">
       <div class="col-md-3">
         <div class="form-group">
           <label for="">Sku</label>
-          <input type="text" name="sku[]" class="form-control">
-          <span class="text-danger">@error('sku') {{$message}} @enderror</span>
+          <input type="text" name="sku[]" class="form-control">          
         </div>
       </div>
       <div class="col-md-3">
         <div class="form-group">
           <label for="">MRP</label>
-          <input type="text" name="mrp[]" class="form-control">
-          <span class="text-danger">@error('mrp') {{$message}} @enderror</span>
+          <input type="text" name="mrp[]" class="form-control">          
         </div>
       </div>
       <div class="col-md-3">
@@ -159,46 +152,64 @@
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="">Qty</label>
-          <input type="text" name="qty[]" class="form-control">
-        </div>
-      </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <label for="">Size</label>
-          <select name="size[]" id="" class="form-control">         
-           <option value="0">Select Size</option>
-           @foreach($size as $list)
-           <option value="{{$list->id}}">{{$list->size}}</option>
-           @endforeach           
-         </select>
+         <label for="">Discount By %</label>
+         <input type="text" name="discount_by[]" class="form-control">
        </div>
      </div>
      <div class="col-md-3">
       <div class="form-group">
-        <label for="">Color</label>
-        <select name="color[]" id="" class="form-control">         
-         <option value="0">Select Color</option>
-         @foreach($color as $list)
-         <option value="{{$list->id}}">{{$list->color}}</option>
+        <label for="">Size</label>
+        <select name="size[]" id="" class="form-control">         
+         <option value="0">Select Size</option>
+         @foreach($size as $list)
+         <option value="{{$list->id}}">{{$list->size}}</option>
          @endforeach           
        </select>
      </div>
    </div>
    <div class="col-md-3">
     <div class="form-group">
-      <label for="">Image</label>
-      <input type="file" name="attr_image[]" class="form-control">
+      <label for="">Color</label>
+      <select name="color[]" id="" class="form-control">         
+       <option value="0">Select Color</option>
+       @foreach($color as $list)
+       <option value="{{$list->id}}">{{$list->color}}</option>
+       @endforeach           
+     </select>
+   </div>
+ </div>
+ <div class="col-md-3">
+  <div class="form-group">      
+    <label for="">Qty</label>
+    <input type="text" name="qty[]" class="form-control">
+  </div>
+</div>
+<div class="col-md-3">      
+  <label for="">Action</label><br>
+  <button type="button" class="btn btn-info" onclick="add_more()"><i class="fas fa-plus mr-2"></i>Add More</button>      
+</div>
+</div>
+</div>
+</div> 
+<!-- //product attr image  -->
+<h2 class="text-center mb-2">Product Image</h2>  
+<div class="jumbotron">   
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="inputFormRow">
+        <div class="input-group mb-3">
+          <input type="file" name="multi_img[]" class="form-control m-input" placeholder="Enter title" autocomplete="off" multiple>
+          <div class="input-group-append">                
+            <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
+          </div>
+        </div>
+      </div>
+      <div id="newRow"></div>
+      <button id="addRow"  onclick ="add_more_image()"  type="button" class="btn btn-info">Add Image</button>
     </div>
   </div>
-  <div class="col-md-3">      
-    <label for="">Action</label><br>
-    <button type="button" class="btn btn-primary" onclick="add_more()"><i class="fas fa-plus mr-2"></i>Add More</button>      
-  </div>
-</div> 
-<!-- //product attr  -->
 </div>
-</div>
+<!-- //product attr  image-->
 <input type="submit" name="login" class="btn btn-primary btn-block mt-4 mb-5" value="Submit"/>
 </form>
 
@@ -210,10 +221,10 @@
     html +='<div class="col-md-3"><div class="form-group"><label for="">Sku</label><input type="text" name="sku[]" class="form-control"></div></div>';
     html +='<div class="col-md-3"><div class="form-group"><label for="">MRP</label><input type="text" name="mrp[]" class="form-control"></div></div>';
     html +='<div class="col-md-3"><div class="form-group"><label for="">Price</label><input type="text" name="price[]" class="form-control"></div></div>';
-    html +='<div class="col-md-3"><div class="form-group"><label for="">Qty</label><input type="text" name="qty[]" class="form-control"></div></div>';
+    html+='<div class="col-md-3"><div class="form-group"><label for="">Discount By %</label><input type="text" name="discount_by[]" class="form-control"></div></div>';    
     html+='<div class="col-md-3"><div class="form-group"><label for="">Size</label><select name="size[]" id="" class="form-control"><option value="0">Select Size</option>@foreach($size as $list)<option value="{{$list->id}}">{{$list->size}}</option>@endforeach</select></div></div>';
     html+='<div class="col-md-3"><div class="form-group"><label for="">Color</label><select name="color[]" id="" class="form-control"><option value="0">Select color</option>@foreach($color as $list)<option value="{{$list->id}}">{{$list->color}}</option>@endforeach</select></div></div>';
-    html+='<div class="col-md-3"><div class="form-group"><label for="">Image</label><input type="file" name="attr_image[]" class="form-control"></div></div>';
+    html +='<div class="col-md-3"><div class="form-group"><label for="">Qty</label><input type="text" name="qty[]" class="form-control"></div></div>';
     html+='<div class="col-md-3"><label for="">Action</label><br><button type="button" class="btn btn-primary mr-3" onclick="add_more()"><i class="fas fa-plus mr-2"></i>Add More</button><button type="button" class="btn btn-danger" onclick="remove_attr()" id="removeRow"><i class="fas fa-minus mr-2"></i>Remove</button></div></div> ';
     html += '</div></div></div>'; 
 
@@ -223,5 +234,23 @@
   $(document).on('click', '#removeRow', function () {
     $(this).closest('#inputFormRow').remove();
   });
-</script>
-@endsection
+  $("#addRow").click(function () {
+    var html = '';
+    html += '<div id="remove_image_input">';
+    html += '<div class="input-group mb-3">';
+    html += '<input type="file" name="multi_img[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">';
+    html += '<div class="input-group-append">';
+    html += '<button id="remove_image_buton" type="button" class="btn btn-danger">Remove</button>';
+    html += '</div>';
+    html += '</div>';
+
+    $('#newRow').append(html);
+  });
+       // remove row
+    $(document).on('click', '#remove_image_buton', function () {
+       $(this).closest('#remove_image_input').remove();
+    });
+
+
+      </script>
+      @endsection

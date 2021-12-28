@@ -3,7 +3,10 @@
 @section("title","category")  
 <form id="" action="{{url('product_update')}}" method ="post" class="" enctype="multipart/form-data">
   <div class="jumbotron">
-    <h4 class="text-center mb-4">Update product</h4> 
+    <h4 class="text-center">Update product</h4>
+    <div class="d-flex justify-content-end mt-3">
+    <a href="{{url('product/show')}}" class="btn btn-danger"><i class="fas fa-undo-alt fa-1x mr-2"></i>Back</a>
+    </div> 
     @csrf   
     <div class="row">
       <div class="col-md-4">
@@ -69,7 +72,6 @@
     <span class="text-danger">@error('image') {{$message}} @enderror</span>
   </div>
 </div>
-
 <div class="col-md-4">
   <div class="form-group">
     <label>Short Desc</label>
@@ -83,20 +85,11 @@
     <textarea type="text" class="form-control" name="desc"> {{$product['desc']}}</textarea>
     <span class="text-danger">@error('desc') {{$message}} @enderror</span>
   </div>
-</div> 
-
-<div class="col-md-4">
-  <div class="form-group">
-    <label>Qty</label>
-    <input type="text" class="form-control" name="qty" value="{{$product['qty']}}">
-    <span class="text-danger">@error('qty') {{$message}} @enderror</span>
-  </div>
 </div>
 <div class="col-md-4">
   <div class="form-group">
-    <label>Price</label>
-    <input type="text" class="form-control" name="price" value="{{$product['price']}}"></input>
-    <span class="text-danger">@error('price') {{$message}} @enderror</span>
+    <label>Warrenty</label>
+    <input type="text" class="form-control" name="warrenty" value="{{$product['warrenty']}}">    
   </div>
 </div> 
 <div class="col-md-4">
@@ -161,7 +154,6 @@
     </select>
   </div>
 </div>
-
 </div>
 </div> 
 <!-- //product attr  -->
@@ -193,8 +185,8 @@
       </div>
       <div class="col-md-3">
         <div class="form-group">
-          <label for="">Qty</label>
-          <input type="text" name="qty[]" class="form-control" value="{{$value->qty}}">
+          <label for="">Discount By %</label>
+          <input type="text" name="discount_by[]" class="form-control" value="{{$value->discount_by}}">
         </div>
       </div>
       <div class="col-md-3">
@@ -232,15 +224,17 @@
 </div>
 <div class="col-md-3">
   <div class="form-group">
-    <label for="">Image</label>
-    <input type="file" name="attr_image[]" class="form-control">
+    <label for="">Qty</label>
+    <input type="text" name="qty[]" class="form-control" value="{{$value->qty}}">
   </div>
 </div>
 <div class="col-md-3">      
   <label for="">Action</label><br>
   <button type="button" class="btn btn-primary mr-3" onclick="add_more()"><i class="fas fa-plus mr-2"></i>Add More</button>
   <a href="{{url('product/attr_delete/'. $value->id . '/' . $value->product_id)}}">      
-    <button type="button" class="btn btn-danger"><i class="fas fa-minus mr-2 "></i>Remove</button>  </a>    
+    <button type="button" class="btn btn-danger"><i class="fas fa-minus mr-2 "></i>Remove</button>  </a>
+  
+
   </div>
 </div>
 <!-- //product attr  -->
@@ -250,18 +244,17 @@
 <input type="submit" name="login" class="btn btn-primary btn-block mb-5" value="Submit"/>
 </form>
 
-<script>
+<script>  
   function add_more(){    
     var html = '';
     html += '<div id="inputFormRow"><div class="jumbotron"><div class="row">';
-
     html +='<div class="col-md-3"><div class="form-group"><label for="">Sku</label><input type="text" name="sku[]" class="form-control"><input type="hidden" name="attr_id[]" class="form-control"></div></div>'; 
     html +='<div class="col-md-3"><div class="form-group"><label for="">MRP</label><input type="text" name="mrp[]" class="form-control"></div></div>';
     html +='<div class="col-md-3"><div class="form-group"><label for="">Price</label><input type="text" name="price[]" class="form-control"></div></div>';
-    html +='<div class="col-md-3"><div class="form-group"><label for="">Qty</label><input type="text" name="qty[]" class="form-control"></div></div>';
+   html+='<div class="col-md-3"><div class="form-group"><label for="">Discount By %</label><input type="text" name="discount_by[]" class="form-control"></div></div>';
     html+='<div class="col-md-3"><div class="form-group"><label for="">Size</label><select name="size[]" id="" class="form-control"><option value="0">Select Size</option>@foreach($size as $list)<option value="{{$list->id}}">{{$list->size}}</option>@endforeach</select></div></div>';
     html+='<div class="col-md-3"><div class="form-group"><label for="">Color</label><select name="color[]" id="" class="form-control"><option value="0">Select color</option>@foreach($color as $list)<option value="{{$list->id}}">{{$list->color}}</option>@endforeach</select></div></div>';
-    html+='<div class="col-md-3"><div class="form-group"><label for="">Image</label><input type="file" name="attr_image[]" class="form-control"></div></div>';
+    html +='<div class="col-md-3"><div class="form-group"><label for="">Qty</label><input type="text" name="qty[]" class="form-control"></div></div>';
     html+='<div class="col-md-3"><label for="">Action</label><br><button type="button" class="btn btn-primary mr-3" onclick="add_more()"><i class="fas fa-plus mr-2"></i>Add More</button><button type="button" class="btn btn-danger" onclick="remove_attr()" id="removeRow"><i class="fas fa-minus mr-2"></i>Remove</button></div></div> ';
     html += '</div></div></div>'; 
 

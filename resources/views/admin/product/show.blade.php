@@ -15,9 +15,7 @@
         <th>Cat_id</th>        
         <th>Slug</th>        
         <th>Model</th>        
-        <th>Brand</th>        
-        <th>Qty</th>        
-        <th>Price</th>        
+        <th>Brand</th>                  
         <th>Image</th>
         <th width="160px">Action</th>        
       </tr>
@@ -31,8 +29,6 @@
         <td>{{$list->slug}}</td>        
         <td>{{$list->model}}</td>
         <td>{{$list->brand_id}}</td>
-        <td>{{$list->qty}}</td>
-        <td>{{$list->price}}</td>
         <td> <img src="{{asset('product_img/'.$list->image)}}" alt="image" width="100px" height="100px"></td>
          <td>
           <a href="{{url('product/edit/'.$list->id)}}" class="btn btn-primary" ><i class="fas fa-edit"></i></a>
