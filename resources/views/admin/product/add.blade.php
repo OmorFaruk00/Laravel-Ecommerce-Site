@@ -195,7 +195,7 @@
 <h2 class="text-center mb-2">Product Image</h2>  
 <div class="jumbotron">   
   <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-12">    
       <div id="inputFormRow">
         <div class="input-group mb-3">
           <input type="file" name="multi_img[]" class="form-control m-input" placeholder="Enter title" autocomplete="off" multiple>
@@ -214,6 +214,7 @@
 </form>
 
 <script>
+  // product Attribute
   function add_more(){    
     var html = '';
     html += '<div id="inputFormRow"><div class="jumbotron"><div class="row">';
@@ -234,6 +235,7 @@
   $(document).on('click', '#removeRow', function () {
     $(this).closest('#inputFormRow').remove();
   });
+  // product_attribute_image
   $("#addRow").click(function () {
     var html = '';
     html += '<div id="remove_image_input">';

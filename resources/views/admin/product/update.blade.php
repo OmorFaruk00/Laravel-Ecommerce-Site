@@ -233,18 +233,38 @@
   <button type="button" class="btn btn-primary mr-3" onclick="add_more()"><i class="fas fa-plus mr-2"></i>Add More</button>
   <a href="{{url('product/attr_delete/'. $value->id . '/' . $value->product_id)}}">      
     <button type="button" class="btn btn-danger"><i class="fas fa-minus mr-2 "></i>Remove</button>  </a>
-  
-
   </div>
 </div>
-<!-- //product attr  -->
 </div>
-@endforeach 
-</div>      
+</div>
+<!-- //product attr  image -->
+<h2 class="text-center mb-2">Product Image</h2>  
+<div class="jumbotron">   
+  <div class="row">
+    <div class="col-lg-12">
+      <div id="">
+        @foreach($product_attr_img as $list)
+        <div class="input-group mb-3">
+          <input type="file" name="multi_img[]" class="form-control m-input" placeholder="Enter title" autocomplete="off" multiple>
+          <input type="hidden" name="iid[]" class="form-control m-input" value="{{$list->id}}">
+
+          <div class="input-group-append">                
+            <a href="{{url('product/attr_img_delete/'. $list->id . '/' . $list->product_id)}}"><button id="removeRow" type="button" class="btn btn-danger">Remove</button></a>
+          </div>
+        </div>
+          <img src="{{asset('product_attr_img/'.$list->multi_image)}}" alt="image" width="100px" height="100px">
+        @endforeach
+      </div>
+      <div id="newRow"></div>
+      <button id="addRow"  onclick ="add_more_image()"  type="button" class="btn btn-info mt-2">Add Image</button>
+    </div>
+  </div>
+</div>
+@endforeach
 <input type="submit" name="login" class="btn btn-primary btn-block mb-5" value="Submit"/>
 </form>
-
-<script>  
+<script> 
+// product_attribute 
   function add_more(){    
     var html = '';
     html += '<div id="inputFormRow"><div class="jumbotron"><div class="row">';
@@ -264,5 +284,23 @@
   $(document).on('click', '#removeRow', function () {
     $(this).closest('#inputFormRow').remove();
   });
+   // product_attr_image
+  $("#addRow").click(function () {
+    var html = '';
+    html += '<div id="remove_image_input">';
+    html += '<div class="input-group mb-3">';
+    html += '<input type="file" name="multi_img[]" class="form-control m-input" placeholder="Enter title" autocomplete="off">';
+    html += '<input type="hidden" name="iid[]" class="form-control m-input">';
+    html += '<div class="input-group-append">';
+    html += '<button id="remove_image_buton" type="button" class="btn btn-danger">Remove</button>';
+    html += '</div>';
+    html += '</div>';
+
+    $('#newRow').append(html);
+  });
+       // remove row
+    $(document).on('click', '#remove_image_buton', function () {
+       $(this).closest('#remove_image_input').remove();
+    });
 </script>
 @endsection
