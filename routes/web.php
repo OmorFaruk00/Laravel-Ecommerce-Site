@@ -35,7 +35,7 @@ Route::group(['middleware'=>['admin_auth']], function(){
 	Route::get("product/delete/{id}","ProductController@destroy");
 	Route::get("product/status/{id}/{status}","ProductController@status");
 	Route::get("product/attr_delete/{id}/{pid}","ProductController@attr_delete");
-	Route::get("product/attr_img_delete/{id}/{pid}","ProductController@image_delete");
+	Route::get("product/attr_img_delete/{id}/{pid}/{image}","ProductController@image_delete");
 	
 
     Route::get('brand/show','BrandController@show');

@@ -1,7 +1,6 @@
 @extends('admin/layout')
+@section("page_title","Product")
 @section("container")
-@section("title","Product")
-
 <form id="" action="{{url('product_add')}}" method ="post" class="" enctype="multipart/form-data">
   <div class="jumbotron">
     <h4 class="text-center">Add product</h4> 

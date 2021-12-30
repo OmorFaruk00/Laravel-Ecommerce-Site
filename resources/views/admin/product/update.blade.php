@@ -1,6 +1,6 @@
 @extends('admin/layout')
+@section("page_title","Product") 
 @section("container")
-@section("title","category")  
 <form id="" action="{{url('product_update')}}" method ="post" class="" enctype="multipart/form-data">
   <div class="jumbotron">
     <h4 class="text-center">Update product</h4>
@@ -249,7 +249,7 @@
           <input type="hidden" name="iid[]" class="form-control m-input" value="{{$list->id}}">
 
           <div class="input-group-append">                
-            <a href="{{url('product/attr_img_delete/'. $list->id . '/' . $list->product_id)}}"><button id="removeRow" type="button" class="btn btn-danger">Remove</button></a>
+            <a href="{{url('product/attr_img_delete/'. $list->id . '/' . $list->product_id . '/'.$list->multi_image)}}"><button id="removeRow" type="button" class="btn btn-danger">Remove</button></a>
           </div>
         </div>
           <img src="{{asset('product_attr_img/'.$list->multi_image)}}" alt="image" width="100px" height="100px">

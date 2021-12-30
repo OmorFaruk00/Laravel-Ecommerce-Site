@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use File;
 class ProductController extends Controller
 {
   public function add(Request $request)
@@ -150,6 +150,7 @@ public function update(Request $request)
   $data->feature = $request->post('feature'); 
   $data->discount = $request->post('discount');
   if($request->hasfile('image')){
+     File::delete('product_img/'.$data->image);
     $file = $request->file('image');
     $ext = $file->extension();
     $fileName = time().'.'.$ext;
@@ -226,10 +227,13 @@ public function attr_delete(Request $request, $id,$pid)
   $request->session()->flash('msg', ' Delete Successfully');
   return Redirect('/product/edit/'.$pid);
 }
-public function image_delete(Request $request, $id,$pid)
+public function image_delete(Request $request, $id,$pid,$image)
 
 { 
-  DB::table('product_attr_img')->where('id', '=', $id)->delete();   
+  // dd($image);
+  File::delete('product_attr_img/'.$image);
+  DB::table('product_attr_img')->where('id', '=', $id)->delete();
+
   $request->session()->flash('msg', ' Delete Successfully');
   return Redirect('/product/edit/'.$pid);
 }
