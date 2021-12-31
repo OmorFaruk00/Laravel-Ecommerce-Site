@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get("/", "FrontController@index");
+Route::get("product_detailes/{slug}","FrontController@product");
 
 Route::view("admin","admin/login");
 Route::post("login_submit","AdminController@login");

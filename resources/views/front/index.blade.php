@@ -65,10 +65,10 @@
                   @foreach($home_category_product[$list->id] as $product)
                   <li>
                     <figure>
-                      <a class="aa-product-img" href="{{url('product/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
-                      <a class="aa-add-card-btn"href="{{url('product/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                      <a class="aa-product-img" href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
+                      <a class="aa-add-card-btn"href="{{url('product_detailes/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                       <figcaption>
-                        <h4 class="aa-product-title"><a href="{{url('product/'.$product->slug)}}">{{$product->title}}</a></h4>
+                        <h4 class="aa-product-title"><a href="{{url('product_detailes/'.$product->slug)}}">{{$product->title}}</a></h4>
                         <span class="aa-product-price"> BDT {{$product_attr[$product->id][0]->price}} </span><span class="aa-product-price"><del>{{$product_attr[$product->id][0]->mrp}}</del></span>
                       </figcaption>
                     </figure> 
@@ -211,10 +211,10 @@
                  @foreach($home_tranding_product[$list->id] as $product)
                  <li>
                   <figure>
-                    <a class="aa-product-img" href="{{url('product/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
-                    <a class="aa-add-card-btn"href="{{url('product/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                    <a class="aa-product-img" href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
+                    <a class="aa-add-card-btn"href="{{url('product_detailes/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                     <figcaption>
-                      <h4 class="aa-product-title"><a href="{{url('product/'.$product->slug)}}">{{$product->title}}</a></h4>
+                      <h4 class="aa-product-title"><a href="{{url('product_detailes/'.$product->slug)}}">{{$product->title}}</a></h4>
                       <span class="aa-product-price"> BDT {{$tranding_product_attr[$product->id][0]->price}} </span><span class="aa-product-price"><del>{{$tranding_product_attr[$product->id][0]->mrp}}</del></span>
                     </figcaption>
                   </figure> 
@@ -240,10 +240,10 @@
               @foreach($home_feature_product[$list->id] as $product)
               <li>
                 <figure>
-                  <a class="aa-product-img" href="{{url('product/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
-                  <a class="aa-add-card-btn"href="{{url('product/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                  <a class="aa-product-img" href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
+                  <a class="aa-add-card-btn"href="{{url('product_detailes/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                   <figcaption>
-                    <h4 class="aa-product-title"><a href="{{url('product/'.$product->slug)}}">{{$product->title}}</a></h4>
+                    <h4 class="aa-product-title"><a href="{{url('product_detailes/'.$product->slug)}}">{{$product->title}}</a></h4>
                     <span class="aa-product-price"> BDT {{$feature_product_attr[$product->id][0]->price}} </span><span class="aa-product-price"><del>{{$feature_product_attr[$product->id][0]->mrp}}</del></span>
                   </figcaption>
                 </figure> 
@@ -268,10 +268,10 @@
              @foreach($home_discount_product[$list->id] as $product)
              <li>
               <figure>
-                <a class="aa-product-img" href="{{url('product/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
-                <a class="aa-add-card-btn"href="{{url('product/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                <a class="aa-product-img" href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
+                <a class="aa-add-card-btn"href="{{url('product_detailes/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                 <figcaption>
-                  <h4 class="aa-product-title"><a href="{{url('product/'.$product->slug)}}">{{$product->title}}</a></h4>
+                  <h4 class="aa-product-title"><a href="{{url('product_detailes/'.$product->slug)}}">{{$product->title}}</a></h4>
                   <span class="aa-product-price"> BDT {{$discount_product_attr[$product->id][0]->price}} </span><span class="aa-product-price"><del>{{$discount_product_attr[$product->id][0]->mrp}}</del></span>
                 </figcaption>
               </figure> 

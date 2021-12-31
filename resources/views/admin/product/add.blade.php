@@ -12,21 +12,21 @@
       <div class="col-md-4">
         <div class="form-group">
           <label>Product Title</label>
-          <input type="text" class="form-control" name="title">
+          <input type="text" class="form-control" name="title" required>
           <span class="text-danger">@error('title') {{$message}} @enderror</span>
         </div>
       </div>
       <div class="col-md-4">
         <div class="form-group">
           <label>Slug</label>
-          <input type="text" class="form-control" name="slug"></input>
+          <input type="text" class="form-control" name="slug" required></input>
           <span class="text-danger">@error('slug') {{$message}} @enderror</span>
         </div>
       </div>  
       <div class="col-md-4">
         <div class="form-group">
           <label>Category</label>          
-          <select name="category" id="" class="form-control">
+          <select name="category" id="" class="form-control" required>
            <span class="text-danger">@error('category') {{$message}} @enderror</span>
            <option value="0">Select Category</option>
            @foreach($result as $list)
@@ -57,21 +57,21 @@
    <div class="col-md-4">
     <div class="form-group">
       <label>Product Image</label>
-      <input type="file" class="form-control" name="image"></input>
+      <input type="file" class="form-control" name="image"></input required>
       <span class="text-danger">@error('image') {{$message}} @enderror</span>
     </div>    
   </div>
   <div class="col-md-4">
     <div class="form-group">
       <label>Short Desc</label>
-      <textarea type="text" class="form-control" name="short_desc"></textarea>
+      <textarea type="text" class="form-control" name="short_desc" required></textarea>
       <span class="text-danger">@error('short_desc') {{$message}} @enderror</span>
     </div>
   </div>
   <div class="col-md-4">
     <div class="form-group">
       <label>Long Desc</label>
-      <textarea type="text" class="form-control" name="desc"></textarea>
+      <textarea type="text" class="form-control" name="desc" required></textarea>
       <span class="text-danger">@error('desc') {{$message}} @enderror</span>
     </div>
   </div>
@@ -134,7 +134,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="">Sku</label>
-          <input type="text" name="sku[]" class="form-control">          
+          <input type="text" name="sku[]" class="form-control" required>          
         </div>
       </div>
       <div class="col-md-3">
@@ -146,7 +146,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="">Price</label>
-          <input type="text" name="price[]" class="form-control">
+          <input type="text" name="price[]" class="form-control" required>
         </div>
       </div>
       <div class="col-md-3">
@@ -180,7 +180,7 @@
  <div class="col-md-3">
   <div class="form-group">      
     <label for="">Qty</label>
-    <input type="text" name="qty[]" class="form-control">
+    <input type="text" name="qty[]" class="form-control" required>
   </div>
 </div>
 <div class="col-md-3">      

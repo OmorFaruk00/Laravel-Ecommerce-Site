@@ -20,7 +20,7 @@
       <div class="col-md-4">
         <div class="form-group">
           <label>Slug</label>
-          <input type="text" class="form-control" name="slug" value="{{$product['slug']}}"></input>
+          <input type="text" class="form-control" name="slug" value="{{$product['slug']}} required"></input>
           <span class="text-danger">@error('slug') {{$message}} @enderror</span>
         </div>
       </div> 
@@ -75,14 +75,14 @@
 <div class="col-md-4">
   <div class="form-group">
     <label>Short Desc</label>
-    <textarea type="text" class="form-control" name="short_desc">{{$product['short_desc']}}</textarea>
+    <textarea type="text" class="form-control" name="short_desc" required>{{$product['short_desc']}}</textarea>
     <span class="text-danger">@error('short_desc') {{$message}} @enderror</span>
   </div>
 </div>
 <div class="col-md-4">
   <div class="form-group">
     <label>Long Desc</label>
-    <textarea type="text" class="form-control" name="desc"> {{$product['desc']}}</textarea>
+    <textarea type="text" class="form-control" name="desc" required> {{$product['desc']}}</textarea >
     <span class="text-danger">@error('desc') {{$message}} @enderror</span>
   </div>
 </div>
@@ -165,7 +165,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="">Sku</label>
-          <input type="text" name="sku[]" class="form-control" value="{{$value->sku}}">
+          <input type="text" name="sku[]" class="form-control" value="{{$value->sku}}" required>
           <input type="hidden" name="attr_id[]" class="form-control" value="{{$value->id}}">
           <span class="text-danger">@error('sku') {{$message}} @enderror</span>
         </div>
@@ -180,7 +180,7 @@
       <div class="col-md-3">
         <div class="form-group">
           <label for="">Price</label>
-          <input type="text" name="price[]" class="form-control" value="{{$value->price}}">
+          <input type="text" name="price[]" class="form-control" value="{{$value->price}}" required>
         </div>
       </div>
       <div class="col-md-3">
@@ -225,7 +225,7 @@
 <div class="col-md-3">
   <div class="form-group">
     <label for="">Qty</label>
-    <input type="text" name="qty[]" class="form-control" value="{{$value->qty}}">
+    <input type="text" name="qty[]" class="form-control" value="{{$value->qty}}" required>
   </div>
 </div>
 <div class="col-md-3">      
@@ -237,6 +237,8 @@
 </div>
 </div>
 </div>
+
+
 <!-- //product attr  image -->
 <h2 class="text-center mb-2">Product Image</h2>  
 <div class="jumbotron">   
@@ -260,6 +262,8 @@
     </div>
   </div>
 </div>
+
+
 @endforeach
 <input type="submit" name="login" class="btn btn-primary btn-block mb-5" value="Submit"/>
 </form>
