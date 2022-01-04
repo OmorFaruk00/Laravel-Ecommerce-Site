@@ -23,245 +23,245 @@
   13. RELATED ITEM SLIDER (SLICK SLIDER)
 
   
-**/
+  **/
 
-jQuery(function($){
+  jQuery(function($){
 
 
-  /* ----------------------------------------------------------- */
+    /* ----------------------------------------------------------- */
   /*  1. CARTBOX 
   /* ----------------------------------------------------------- */
-    
-     jQuery(".aa-cartbox").hover(function(){
-      jQuery(this).find(".aa-cartbox-summary").fadeIn(500);
-    }
-      ,function(){
-          jQuery(this).find(".aa-cartbox-summary").fadeOut(500);
-      }
-     );   
+
+  jQuery(".aa-cartbox").hover(function(){
+    jQuery(this).find(".aa-cartbox-summary").fadeIn(500);
+  }
+  ,function(){
+    jQuery(this).find(".aa-cartbox-summary").fadeOut(500);
+  }
+  );   
   
   /* ----------------------------------------------------------- */
   /*  2. TOOLTIP
   /* ----------------------------------------------------------- */    
-    jQuery('[data-toggle="tooltip"]').tooltip();
-    jQuery('[data-toggle2="tooltip"]').tooltip();
+  jQuery('[data-toggle="tooltip"]').tooltip();
+  jQuery('[data-toggle2="tooltip"]').tooltip();
 
   /* ----------------------------------------------------------- */
   /*  3. PRODUCT VIEW SLIDER 
   /* ----------------------------------------------------------- */    
 
-    jQuery('#demo-1 .simpleLens-thumbnails-container img').simpleGallery({
-        loading_image: 'demo/images/loading.gif'
-    });
+  jQuery('#demo-1 .simpleLens-thumbnails-container img').simpleGallery({
+    loading_image: 'demo/images/loading.gif'
+  });
 
-    jQuery('#demo-1 .simpleLens-big-image').simpleLens({
-        loading_image: 'demo/images/loading.gif'
-    });
+  jQuery('#demo-1 .simpleLens-big-image').simpleLens({
+    loading_image: 'demo/images/loading.gif'
+  });
 
   /* ----------------------------------------------------------- */
   /*  4. POPULAR PRODUCT SLIDER (SLICK SLIDER)
   /* ----------------------------------------------------------- */      
 
-    jQuery('.aa-popular-slider').slick({
-      dots: false,
-      infinite: false,
-      speed: 300,
-      slidesToShow: 4,
-      slidesToScroll: 4,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
+  jQuery('.aa-popular-slider').slick({
+    dots: false,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
         // You can unslick at a given breakpoint now by adding:
         // settings: "unslick"
         // instead of a settings object
-      ]
-    }); 
+        ]
+      }); 
 
   
   /* ----------------------------------------------------------- */
   /*  5. FEATURED PRODUCT SLIDER (SLICK SLIDER)
   /* ----------------------------------------------------------- */      
 
-    jQuery('.aa-featured-slider').slick({
-        dots: false,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
+  jQuery('.aa-featured-slider').slick({
+    dots: false,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
           // You can unslick at a given breakpoint now by adding:
           // settings: "unslick"
           // instead of a settings object
-        ]
-    });
-    
+          ]
+        });
+
   /* ----------------------------------------------------------- */
   /*  6. LATEST PRODUCT SLIDER (SLICK SLIDER)
   /* ----------------------------------------------------------- */      
-    jQuery('.aa-latest-slider').slick({
-        dots: false,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 4,
-        slidesToScroll: 4,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 3,
-              slidesToScroll: 3,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
+  jQuery('.aa-latest-slider').slick({
+    dots: false,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
           // You can unslick at a given breakpoint now by adding:
           // settings: "unslick"
           // instead of a settings object
-        ]
-    });
+          ]
+        });
 
   /* ----------------------------------------------------------- */
   /*  7. TESTIMONIAL SLIDER (SLICK SLIDER)
   /* ----------------------------------------------------------- */     
-    
-    jQuery('.aa-testimonial-slider').slick({
-      dots: true,
-      infinite: true,
-      arrows: false,
-      speed: 300,
-      slidesToShow: 1,
-      adaptiveHeight: true
-    });
+
+  jQuery('.aa-testimonial-slider').slick({
+    dots: true,
+    infinite: true,
+    arrows: false,
+    speed: 300,
+    slidesToShow: 1,
+    adaptiveHeight: true
+  });
 
   /* ----------------------------------------------------------- */
   /*  8. CLIENT BRAND SLIDER (SLICK SLIDER)
   /* ----------------------------------------------------------- */  
 
-    jQuery('.aa-client-brand-slider').slick({
-        dots: false,
-        infinite: false,
-        speed: 300,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        responsive: [
-          {
-            breakpoint: 1024,
-            settings: {
-              slidesToShow: 4,
-              slidesToScroll: 4,
-              infinite: true,
-              dots: true
-            }
-          },
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
+  jQuery('.aa-client-brand-slider').slick({
+    dots: false,
+    infinite: false,
+    speed: 300,
+    autoplay: true,
+    autoplaySpeed: 2000,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 4,
+        slidesToScroll: 4,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
           // You can unslick at a given breakpoint now by adding:
           // settings: "unslick"
           // instead of a settings object
-        ]
-    });
+          ]
+        });
 
   /* ----------------------------------------------------------- */
   /*  9. PRICE SLIDER  (noUiSlider SLIDER)
   /* ----------------------------------------------------------- */        
 
-    jQuery(function(){
-      if($('body').is('.productPage')){
-       var skipSlider = document.getElementById('skipstep');
-        noUiSlider.create(skipSlider, {
-            range: {
-                'min': 0,
-                '10%': 10,
-                '20%': 20,
-                '30%': 30,
-                '40%': 40,
-                '50%': 50,
-                '60%': 60,
-                '70%': 70,
-                '80%': 80,
-                '90%': 90,
-                'max': 100
-            },
-            snap: true,
-            connect: true,
-            start: [20, 70]
-        });
+  jQuery(function(){
+    if($('body').is('.productPage')){
+     var skipSlider = document.getElementById('skipstep');
+     noUiSlider.create(skipSlider, {
+      range: {
+        'min': 0,
+        '10%': 10,
+        '20%': 20,
+        '30%': 30,
+        '40%': 40,
+        '50%': 50,
+        '60%': 60,
+        '70%': 70,
+        '80%': 80,
+        '90%': 90,
+        'max': 100
+      },
+      snap: true,
+      connect: true,
+      start: [20, 70]
+    });
         // for value print
         var skipValues = [
-          document.getElementById('skip-value-lower'),
-          document.getElementById('skip-value-upper')
+        document.getElementById('skip-value-lower'),
+        document.getElementById('skip-value-upper')
         ];
 
         skipSlider.noUiSlider.on('update', function( values, handle ) {
@@ -271,29 +271,29 @@ jQuery(function($){
     });
 
 
-    
+
   /* ----------------------------------------------------------- */
   /*  10. SCROLL TOP BUTTON
   /* ----------------------------------------------------------- */
 
   //Check to see if the window is top if not then display button
 
-    jQuery(window).scroll(function(){
-      if ($(this).scrollTop() > 300) {
-        $('.scrollToTop').fadeIn();
-      } else {
-        $('.scrollToTop').fadeOut();
-      }
-    });
-     
+  jQuery(window).scroll(function(){
+    if ($(this).scrollTop() > 300) {
+      $('.scrollToTop').fadeIn();
+    } else {
+      $('.scrollToTop').fadeOut();
+    }
+  });
+
     //Click event to scroll to top
 
     jQuery('.scrollToTop').click(function(){
       $('html, body').animate({scrollTop : 0},800);
       return false;
     });
-  
-  /* ----------------------------------------------------------- */
+
+    /* ----------------------------------------------------------- */
   /*  11. PRELOADER
   /* ----------------------------------------------------------- */
 
@@ -301,7 +301,7 @@ jQuery(function($){
       jQuery('#wpf-loader-two').delay(200).fadeOut('slow'); // will fade out      
     })
 
-  /* ----------------------------------------------------------- */
+    /* ----------------------------------------------------------- */
   /*  12. GRID AND LIST LAYOUT CHANGER 
   /* ----------------------------------------------------------- */
 
@@ -319,44 +319,78 @@ jQuery(function($){
   /*  13. RELATED ITEM SLIDER (SLICK SLIDER)
   /* ----------------------------------------------------------- */      
 
-    jQuery('.aa-related-item-slider').slick({
-      dots: false,
-      infinite: false,
-      speed: 300,
-      slidesToShow: 4,
-      slidesToScroll: 4,
-      responsive: [
-        {
-          breakpoint: 1024,
-          settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
-            infinite: true,
-            dots: true
-          }
-        },
-        {
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 2
-          }
-        },
-        {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
+  jQuery('.aa-related-item-slider').slick({
+    dots: false,
+    infinite: false,
+    speed: 300,
+    slidesToShow: 4,
+    slidesToScroll: 4,
+    responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        infinite: true,
+        dots: true
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
         // You can unslick at a given breakpoint now by adding:
         // settings: "unslick"
         // instead of a settings object
-      ]
-    }); 
-   
-    
+        ]
+      }); 
+
+
 });
 
+function showcolor(size){
+  $("#size_id").val(size);
+  $(".product_color").hide();
+  $(".size_"+size).show();
+  $(".size_link").css('border','1px solid #ddd');
+  $("#size_"+size).css('border','1px solid black');
+}
+function color_change(color){
+  $("#color_id").val(color);
 
+}
+function add_to_cart(id){ 
+ var size = $("#size_id").val();
+ var color = $("#color_id").val();
+ if(size == ''){  
+  $('#cart_msg').html('please select size');
+}
+else if(color == ''){
+ $('#cart_msg').html('please select color');
+}
+else{
+  $("#product_id").val(id);
+  $("#pqty").val($("#qty").val());
+ 
+  $.ajax({
+    url:'/add_to_cart',
+    type:'post',
+    data:$("#cart_form").serialize(),
+    success:function(data){
+      console.log(data);
+    }
+  })
+}
+
+}
 

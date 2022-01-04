@@ -123,5 +123,71 @@ class FrontController extends Controller
     return view('front/product',$data);
 
   }
+  public function add_to_cart(Request $request)
+  {    
+    if($request->session()->has('User_id')){
+      $uid = $request->session()->get('User_id');
+      $user_type = "Reg";
+    }else{
+      if(session()->has("User_temp_id")===null){
+        $rand=rand(111111111,999999999);
+        session()->put("User_temp_id",$rand);
+        $uid = $rand;
+        $user_type = "Not Reg";
+        // echo $uid;
+        // echo $user_type;
+      }
+    }
+    $product_id = $request->post('product_id');
+    $qty = $request->post('pqty');
+    $size = $request->post('size_id');
+    $color = $request->post('color_id');
+
+    $data = DB::table('product_attr')
+    ->select('product_attr.id')
+    ->leftjoin('sizes', 'sizes.id', '=', 'product_attr.size')
+    ->leftjoin('colors', 'colors.id', '=', 'product_attr.color')
+    ->where(['product_id'=> $product_id])
+    ->where(['sizes.size'=> $size])
+    ->where(['colors.color'=>  $color])
+    ->get();
+    $product_attr_id = $data[0]->id;
+
+    // $check = DB::table('cart')
+    // ->where(['user_id'=> $uid])
+    // ->where(['user_type'=> $user_type])
+    // ->where(['product_id'=> $product_id])
+    // ->where(['product_attr_id'=> $product_attr_id])
+    // ->get();
+
+
+    // if(isset($check[0])){
+    //   $update_id = $check[0]->id;      
+    //   DB::table('cart')
+    //   ->where(['id'=> $update_id])
+    //   ->update(['qty'=> $qty]);
+    //   $msg = "updated";
+    // }
+    // else{
+      DB::table('cart')->insert([
+        'user_id'=>  $uid,
+        'user_type'=> $user_type,
+        'qty'=> $qty,
+        'product_id'=> $product_id,
+        'product_attr_id'=>$product_attr_id,
+        'added_on'=> date('Y-m-d h:i:s')
+      ]);
+    //   $msg = "added";
+    // }
+    // return response()->jeson(['msg'=>$msg]);
+
+
+      // echo $product_attr_id;
+    // echo "<pre>";
+    // print_r($data[0]->id);
+
+    // dd($data);
+
+  }
 
 }

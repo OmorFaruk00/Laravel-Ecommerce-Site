@@ -221,6 +221,7 @@
      @endforeach           
    </select>
  </div>
+ 
 </div>
 <div class="col-md-3">
   <div class="form-group">
@@ -236,6 +237,7 @@
   </div>
 </div>
 </div>
+
 </div>
 
 
@@ -244,7 +246,7 @@
 <div class="jumbotron">   
   <div class="row">
     <div class="col-lg-12">
-      <div id="">
+      
         @foreach($product_attr_img as $list)
         <div class="input-group mb-3">
           <input type="file" name="multi_img[]" class="form-control m-input" placeholder="Enter title" autocomplete="off" multiple>
@@ -256,7 +258,7 @@
         </div>
           <img src="{{asset('product_attr_img/'.$list->multi_image)}}" alt="image" width="100px" height="100px">
         @endforeach
-      </div>
+      
       <div id="newRow"></div>
       <button id="addRow"  onclick ="add_more_image()"  type="button" class="btn btn-info mt-2">Add Image</button>
     </div>
