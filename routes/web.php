@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use app\Http\Controllers\Front\cartController;
 
 
 Route::get("/", "FrontController@index");
 Route::get("product_detailes/{slug}","FrontController@product");
+Route::get("/ok","cartController@hello");
 Route::post("add_to_cart","FrontController@add_to_cart");
 
 Route::view("admin","admin/login");

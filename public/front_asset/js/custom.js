@@ -357,7 +357,7 @@
 
 
 });
-
+// Start add to cart
 function showcolor(size){
   $("#size_id").val(size);
   $(".product_color").hide();
@@ -367,15 +367,18 @@ function showcolor(size){
 }
 function color_change(color){
   $("#color_id").val(color);
-
 }
-function add_to_cart(id){ 
+function add_to_cart(id,size,color){ 
  var size = $("#size_id").val();
  var color = $("#color_id").val();
- if(size == ''){  
+ if(size =='' && color ==''){
+  size ="no";
+  color="no";
+ }
+ if(size == '' && size!= 'no'){  
   $('#cart_msg').html('please select size');
 }
-else if(color == ''){
+else if(color == '' && color != 'no'){
  $('#cart_msg').html('please select color');
 }
 else{
@@ -387,10 +390,11 @@ else{
     type:'post',
     data:$("#cart_form").serialize(),
     success:function(data){
-      console.log(data);
+      // console.log(data);
+      alert("Product " +data.msg);
     }
   })
 }
-
 }
+// End add to cart
 

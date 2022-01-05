@@ -4,7 +4,7 @@
 <!-- product category -->
 <section id="aa-product-details">
   <div class="container">
-    <div class="row">
+    <div class="row">     
       <div class="col-md-12">
         <div class="aa-product-details-area">
           <div class="aa-product-details-content">
@@ -80,7 +80,7 @@
                   @endif
                 </div>
                 <div class="aa-prod-view-bottom">
-                  <a class="aa-add-to-cart-btn" href="javascript:void(0)" onclick="add_to_cart('{{$product[0]->id}}')">Add To Cart</a>
+                  <a class="aa-add-to-cart-btn" href="javascript:void(0)" onclick="add_to_cart('{{$product[0]->id}}','{{$product_attr[$product[0]->id][0]->size}}','{{$product_attr[$product[0]->id][0]->color}}')">Add To Cart</a>
                   <a class="aa-add-to-cart-btn" href="#">Wishlist</a>
                   <a class="aa-add-to-cart-btn" href="#">Compare</a>
                 </div>
