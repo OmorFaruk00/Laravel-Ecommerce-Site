@@ -390,11 +390,20 @@ else{
     type:'post',
     data:$("#cart_form").serialize(),
     success:function(data){
-      // console.log(data);
-      alert("Product " +data.msg);
+      if(data=="added"){
+        alert("Product Added");
+      }else{
+        alert("Product update");
+      }      
     }
-  })
+  });
 }
+}
+
+function home_add_to_cart(id,size,color){
+  $('#size_id').val(size);
+  $('#color_id').val(color);
+  add_to_cart(id,size,color);
 }
 // End add to cart
 

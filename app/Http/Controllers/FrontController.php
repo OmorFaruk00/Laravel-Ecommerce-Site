@@ -100,8 +100,6 @@ class FrontController extends Controller
       ->where(['product_attr_img.product_id' => $list->id])
       ->get();
     }
-
-
        //Start related product
     $data['related_product'] = DB::table('products')
     ->where(['status' => 1])
@@ -115,8 +113,7 @@ class FrontController extends Controller
       ->leftjoin('colors', 'colors.id', '=', 'product_attr.color')
       ->where(['product_attr.product_id' => $list1->id])
       ->get();
-    }
-    
+    }    
     return view('front/product',$data);
 
   }
@@ -128,7 +125,7 @@ class FrontController extends Controller
     }else{      
       $uid = user_temp_id();
       $user_type = "No Reg";        
-    }  
+    }   
     
     $product_id = $request->post('product_id');
     $qty = $request->post('pqty');
@@ -142,19 +139,19 @@ class FrontController extends Controller
     ->where(['sizes.size'=> $size])
     ->where(['colors.color'=>  $color])
     ->get();
-    $product_attr_id = $data[0]->id;    
+    $product_attr_id = $data[0]->id;
     $check = DB::table('cart')
     ->where(['user_id'=> $uid])
     ->where(['user_type'=> $user_type])
     ->where(['product_id'=> $product_id])
     ->where(['product_attr_id'=> $product_attr_id])
-    ->get();  
+    ->get();
     if(isset($check[0])){
       $update_id = $check[0]->id;      
       DB::table('cart')
       ->where(['id'=> $update_id])
       ->update(['qty'=> $qty]);
-      $msg = "updated";
+      echo"updated";
     }
     else{
       DB::table('cart')->insert([
@@ -165,13 +162,8 @@ class FrontController extends Controller
         'product_attr_id'=> $product_attr_id,
         'added_on'=> date('Y-m-d h:i:s')
       ]);
-      $msg = "added";
-    }
-    return response()->json(['msg'=>$msg]);
-
-
-    
-
+      echo"added";
+    }  
   }
 
 }
