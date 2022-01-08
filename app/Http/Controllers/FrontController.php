@@ -152,11 +152,12 @@ class FrontController extends Controller
         DB::table('cart')
       ->where(['id'=> $update_id])
       ->delete();
+      $msg = "remove";       
       }else{
       DB::table('cart')
       ->where(['id'=> $update_id])
       ->update(['qty'=> $qty]);
-      echo"updated";
+      $msg = "updated";
       }     
       
     }
@@ -169,8 +170,21 @@ class FrontController extends Controller
         'product_attr_id'=> $product_attr_id,
         'added_on'=> date('Y-m-d h:i:s')
       ]);
-      echo"added";
-    }  
+      $msg = "added";      
+    }
+    $data = DB::table('cart')
+      ->leftjoin('products', 'products.id', '=', 'cart.product_id')
+      ->leftjoin('product_attr', 'product_attr.id', '=', 'cart.product_attr_id')
+      ->leftjoin('sizes', 'sizes.id', '=', 'product_attr.size')
+      ->leftjoin('colors', 'colors.id', '=', 'product_attr.color')
+      ->where(['user_id' => $uid])
+      ->where(['user_type' => $user_type])
+      ->select('products.id as pid','products.title','products.slug','products.image','cart.qty','sizes.size','colors.color','product_attr.price','product_attr.id as attr_id')
+      ->get();
+      // prx($data);
+      $total_cart = count($data);
+
+    return response()->json(["msg"=>$msg,"total_cart"=>$total_cart,"result"=>$data]);
   }
   function cart_page(Request $request){
     if($request->session()->has('User_id')){

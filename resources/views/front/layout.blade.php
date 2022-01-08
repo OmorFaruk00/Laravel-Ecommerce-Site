@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">    
   <title>Daily Shop | Home</title>
+
   <!-- Font awesome -->
   <link href="{{asset('front_asset/css/font-awesome.css')}}" rel="stylesheet">
   <!-- Bootstrap -->
@@ -22,11 +23,15 @@
   <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
   <!-- Top Slider CSS -->
   <link href="{{asset('front_asset/css/sequence-theme.modern-slide-in.css')}}" rel="stylesheet" media="all">    
-  <link href="{{asset('front_asset/css/style.css')}}" rel="stylesheet">
+  <link href="{{asset('front_asset/css/style.css')}}" rel="stylesheet">    
 
   <!-- Google Font -->
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> 
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+
+
+
+  
 
 </head>
 <body> 
@@ -40,6 +45,8 @@
 <!-- SCROLL TOP BUTTON -->
 <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
 <!-- END SCROLL TOP BUTTON -->
+
+
 <!-- Start header section -->
 <header id="aa-header">
   <!-- start header top  -->
@@ -118,41 +125,45 @@
             </div>
             <!-- / logo  -->
             <!-- cart box -->
+            @php
+            $cart_mene = cart_menu();
+            $total_cart = count($cart_mene);
+            $total_price = 0;
+            @endphp
             <div class="aa-cartbox">
-              <a class="aa-cart-link" href="#">
+              <a class="aa-cart-link" href="#" id="add_cartbox">
                 <span class="fa fa-shopping-basket"></span>
                 <span class="aa-cart-title">SHOPPING CART</span>
-                <span class="aa-cart-notify">2</span>
+                <span class="aa-cart-notify">{{$total_cart}}</span>
               </a>
+              @if($total_cart>0)
               <div class="aa-cartbox-summary">
                 <ul>
-                  <li>
-                    <a class="aa-cartbox-img" href="#"><img src="{{asset('front_asset/img/woman-small-2.jpg')}}" alt="img"></a>
+                  @foreach($cart_mene as $product)
+                  @php
+                  $total_price = $total_price+($product->qty*$product->price);
+                  @endphp
+                  <li >
+                    <a class="aa-cartbox-img" href="#"><img src="{{asset('product_img/'.$product->image)}}" alt="img"></a>
                     <div class="aa-cartbox-info">
-                      <h4><a href="#">Product Name</a></h4>
-                      <p>1 x $250</p>
+                      <h4><a href="#">{{$product->title}}</a></h4>
+                      <p>{{$product->qty}} x TK {{$product->price}}</p>
                     </div>
                     <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
                   </li>
-                  <li>
-                    <a class="aa-cartbox-img" href="#"><img src="{{asset('front_asset/img/woman-small-1.jpg')}}" alt="img"></a>
-                    <div class="aa-cartbox-info">
-                      <h4><a href="#">Product Name</a></h4>
-                      <p>1 x $250</p>
-                    </div>
-                    <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
-                  </li>                    
+                  @endforeach                                    
                   <li>
                     <span class="aa-cartbox-total-title">
                       Total
                     </span>
                     <span class="aa-cartbox-total-price">
-                      $500
+                      {{$total_price}}
                     </span>
                   </li>
                 </ul>
                 <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
               </div>
+              @endif
             </div>
             <!-- / cart box -->
             <!-- search box -->
@@ -188,7 +199,7 @@
         <div class="navbar-collapse collapse">
           <!-- Left nav -->
           <ul class="nav navbar-nav">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="{{url('/')}}">Home</a></li>
             <li><a href="#">Men <span class="caret"></span></a>
               <ul class="dropdown-menu">                
                 <li><a href="#">Casual</a></li>

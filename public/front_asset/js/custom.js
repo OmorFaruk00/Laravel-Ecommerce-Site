@@ -383,18 +383,31 @@ else if(color == '' && color != 'no'){
 }
 else{
   $("#product_id").val(id);
-  $("#pqty").val($("#qty").val());
- 
+  $("#pqty").val($("#qty").val()); 
   $.ajax({
     url:'/add_to_cart',
     type:'post',
     data:$("#cart_form").serialize(),
-    success:function(data){
-      if(data=="added"){
-        alert("Product Added");
-      }else if(data=="updated"){
-        alert("Product update");
-      }      
+    success:function(data){ 
+    console.log(data.data)   
+    alert('product '+data.msg);
+    if(data.total_cart == 0){
+      $(".aa-cart-notify").html(0);
+      $(".aa-cartbox-summary").remove();
+    }else{
+      $(".aa-cart-notify").html(data.total_cart);
+      var html='<div class="aa-cartbox-summary"><ul>';
+      $.each(data.result, function(key,val){
+        console.log(data.result);
+       html +='<li><a class="aa-cartbox-img" href="#"><img src="" alt="img"></a><div class="aa-cartbox-info"><h4><a href="#">"+val.title+"</a></h4><p>4 x TK 544</p></div><a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a></li>';
+      });
+      html+='</ul></div>';
+      $("#add_cartbox").after(html);
+
+
+    }
+          
+       
     }
   });
 }
@@ -417,7 +430,7 @@ function cart_item_remove(pid,attr_id,color,size){
  $("#color_id").val(color); 
  $("#qty").val(0);
  $("#cart_box_"+attr_id).remove();
- add_to_cart(pid,color,size);
+ add_to_cart(pid,color,size); 
  
 }
 // End add to cart
