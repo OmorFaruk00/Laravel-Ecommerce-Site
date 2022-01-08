@@ -392,18 +392,33 @@ else{
     success:function(data){
       if(data=="added"){
         alert("Product Added");
-      }else{
+      }else if(data=="updated"){
         alert("Product update");
       }      
     }
   });
 }
 }
-
 function home_add_to_cart(id,size,color){
   $('#size_id').val(size);
   $('#color_id').val(color);
   add_to_cart(id,size,color);
+}
+function qty_update(pid,attr_id,color,size,price){
+ $("#size_id").val(size);
+ $("#color_id").val(color);
+ var qty = $("#qty_"+attr_id).val();
+ $("#qty").val(qty);
+ add_to_cart(pid,color,size);
+ $("#total_price_"+pid).html('TK'+qty*price);
+}
+function cart_item_remove(pid,attr_id,color,size){
+ $("#size_id").val(size);
+ $("#color_id").val(color); 
+ $("#qty").val(0);
+ $("#cart_box_"+attr_id).remove();
+ add_to_cart(pid,color,size);
+ 
 }
 // End add to cart
 

@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">    
   <title>Daily Shop | Home</title>
-
   <!-- Font awesome -->
   <link href="{{asset('front_asset/css/font-awesome.css')}}" rel="stylesheet">
   <!-- Bootstrap -->
@@ -23,15 +22,11 @@
   <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
   <!-- Top Slider CSS -->
   <link href="{{asset('front_asset/css/sequence-theme.modern-slide-in.css')}}" rel="stylesheet" media="all">    
-  <link href="{{asset('front_asset/css/style.css')}}" rel="stylesheet">    
+  <link href="{{asset('front_asset/css/style.css')}}" rel="stylesheet">
 
   <!-- Google Font -->
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-
-
-
-  
+  <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'> 
 
 </head>
 <body> 
@@ -45,8 +40,6 @@
 <!-- SCROLL TOP BUTTON -->
 <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
 <!-- END SCROLL TOP BUTTON -->
-
-
 <!-- Start header section -->
 <header id="aa-header">
   <!-- start header top  -->
@@ -97,7 +90,7 @@
               <ul class="aa-head-top-nav-right">
                 <li><a href="account.html">My Account</a></li>
                 <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
-                <li class="hidden-xs"><a href="cart.html">My Cart</a></li>
+                <li class="hidden-xs"><a href="{{url('/cart')}}">My Cart</a></li>
                 <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
                 <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
               </ul>

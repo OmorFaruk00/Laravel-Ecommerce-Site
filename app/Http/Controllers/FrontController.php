@@ -147,11 +147,18 @@ class FrontController extends Controller
     ->where(['product_attr_id'=> $product_attr_id])
     ->get();
     if(isset($check[0])){
-      $update_id = $check[0]->id;      
+      $update_id = $check[0]->id;
+      if($qty == 0){
+        DB::table('cart')
+      ->where(['id'=> $update_id])
+      ->delete();
+      }else{
       DB::table('cart')
       ->where(['id'=> $update_id])
       ->update(['qty'=> $qty]);
       echo"updated";
+      }     
+      
     }
     else{
       DB::table('cart')->insert([
@@ -164,6 +171,26 @@ class FrontController extends Controller
       ]);
       echo"added";
     }  
+  }
+  function cart_page(Request $request){
+    if($request->session()->has('User_id')){
+      $uid = $request->session()->get('User_id');
+      $user_type = "Reg";
+    }else{      
+      $uid = user_temp_id();
+      $user_type = "No Reg";        
+    }
+     $data["result"] =DB::table('cart')
+      ->leftjoin('products', 'products.id', '=', 'cart.product_id')
+      ->leftjoin('product_attr', 'product_attr.id', '=', 'cart.product_attr_id')
+      ->leftjoin('sizes', 'sizes.id', '=', 'product_attr.size')
+      ->leftjoin('colors', 'colors.id', '=', 'product_attr.color')
+      ->where(['user_id' => $uid])
+      ->where(['user_type' => $user_type])
+      ->select('products.id as pid','products.title','products.slug','products.image','cart.qty','sizes.size','colors.color','product_attr.price','product_attr.id as attr_id')
+      ->get();
+    // prx($data);
+    return view('front/cart',$data);
   }
 
 }
