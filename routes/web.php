@@ -4,10 +4,13 @@ use Illuminate\Support\Facades\Route;
 use app\Http\Controllers\Front\cartController;
 
 
+Route::get("ok", [cartController::class,"hello"]);
+
 Route::get("/", "FrontController@index");
 Route::get("product_detailes/{slug}","FrontController@product");
 Route::get("/cart","FrontController@cart_page");
 Route::post("add_to_cart","FrontController@add_to_cart");
+Route::get('category/{slug}',"FrontController@category");
 
 Route::view("admin","admin/login");
 Route::post("login_submit","AdminController@login");

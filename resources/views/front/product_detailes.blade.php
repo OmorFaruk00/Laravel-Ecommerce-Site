@@ -1,6 +1,5 @@
 @extends('front/layout')
 @section('container')
-
 <!-- product category -->
 <section id="aa-product-details">
   <div class="container">
@@ -17,7 +16,6 @@
                       <div class="simpleLens-big-image-container"><a data-lens-image="{{asset('product_img/'.$product[0]->image)}}" class="simpleLens-lens-image"><img src="{{asset('product_img/'.$product[0]->image)}}" class="simpleLens-big-image"></a></div>
                     </div>
                     <div class="simpleLens-thumbnails-container">
-
                       @if(isset($product_attr_img[$product[0]->id][0]->id)) 
                       <a data-big-image="{{asset('product_img/'.$product[0]->image)}}" data-lens-image="{{asset('product_img/'.$product[0]->image)}}" class="simpleLens-thumbnail-wrapper" href="#">
                         <img src="{{asset('product_img/'.$product[0]->image)}}" height="70px" width="80px">

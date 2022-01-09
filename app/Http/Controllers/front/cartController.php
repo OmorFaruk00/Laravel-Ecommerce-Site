@@ -8,6 +8,6 @@ class cartController extends Controller
 	function hello()
 	{
 
-		dd("hello");
+		return "hello";
 	}
 }

@@ -114,9 +114,10 @@ class FrontController extends Controller
       ->where(['product_attr.product_id' => $list1->id])
       ->get();
     }    
-    return view('front/product',$data);
+    return view('front/product_detailes',$data);
 
   }
+  // add to cart 
   public function add_to_cart(Request $request)
   {    
     if($request->session()->has('User_id')){
@@ -202,5 +203,12 @@ class FrontController extends Controller
       ->get();    
     return view('front/cart',$data);
   }
+  // End add to cart
+  // start category controller
+  function category( Request $request,$slug){
+    return view('front/category');
+
+  }
+  // end category controller
 
 }
