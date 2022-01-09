@@ -388,24 +388,27 @@ else{
     url:'/add_to_cart',
     type:'post',
     data:$("#cart_form").serialize(),
-    success:function(data){ 
-    console.log(data.data)   
-    alert('product '+data.msg);
+    success:function(data){
+    var total_price = 0; 
+    swal({title: 'Cart '+data.msg, text: 'Done...', icon: 'success', timer: 2000, buttons: false, });
+    // alert('product '+data.msg);
     if(data.total_cart == 0){
       $(".aa-cart-notify").html(0);
       $(".aa-cartbox-summary").remove();
     }else{
       $(".aa-cart-notify").html(data.total_cart);
-      var html='<div class="aa-cartbox-summary"><ul>';
+      var html='';
+      html+='<ul>';
       $.each(data.result, function(key,val){
-        console.log(data.result);
-       html +='<li><a class="aa-cartbox-img" href="#"><img src="" alt="img"></a><div class="aa-cartbox-info"><h4><a href="#">"+val.title+"</a></h4><p>4 x TK 544</p></div><a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a></li>';
-      });
-      html+='</ul></div>';
-      $("#add_cartbox").after(html);
-
+       total_price = parseInt(total_price)+(parseInt(val.qty) * parseInt(val.price));
+       html +='<li><a class="aa-cartbox-img" href="#"><img src="'+PRODUCT_IMAGE+'/'+val.image+'" alt="img"></a><div class="aa-cartbox-info"><h4><a href="#">'+val.title+'</a></h4><p>'+val.qty+' x TK '+val.price+'</p></div><a class="aa-remove-product" href="javascript:void(0)"></span></a></li>';
+      });     
 
     }
+    html+='<li><span class="aa-cartbox-total-title">Total</span><span class="aa-cartbox-total-price">'+total_price+'</span></li>';
+    html+='<a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>'
+    html+='</ul>';  
+      $(".aa-cartbox-summary").html(html);
           
        
     }
@@ -425,7 +428,7 @@ function qty_update(pid,attr_id,color,size,price){
  add_to_cart(pid,color,size);
  $("#total_price_"+pid).html('TK'+qty*price);
 }
-function cart_item_remove(pid,attr_id,color,size){
+function cart_item_remove(pid,attr_id,color,size){ 
  $("#size_id").val(size);
  $("#color_id").val(color); 
  $("#qty").val(0);

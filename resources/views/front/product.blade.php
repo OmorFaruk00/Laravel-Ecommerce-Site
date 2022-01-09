@@ -253,13 +253,5 @@
         </div>
       </div>
     </div>
-  </section>
-  <form id="cart_form">
-  @csrf
-  <input type="hidden" id="product_id" name="product_id">
-  <input type="hidden" id="pqty" name="pqty">
-  <input type="hidden" id="size_id" name="size_id">
-  <input type="hidden" id="color_id" name="color_id">
-  </form>
-  
+  </section>  
   @endsection

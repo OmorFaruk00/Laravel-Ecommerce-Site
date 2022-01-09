@@ -147,19 +147,18 @@ class FrontController extends Controller
     ->where(['product_attr_id'=> $product_attr_id])
     ->get();
     if(isset($check[0])){
-      $update_id = $check[0]->id;
+      $update_id = $check[0]->id;      
       if($qty == 0){
         DB::table('cart')
       ->where(['id'=> $update_id])
       ->delete();
-      $msg = "remove";       
+      $msg = "Remove";       
       }else{
       DB::table('cart')
       ->where(['id'=> $update_id])
       ->update(['qty'=> $qty]);
-      $msg = "updated";
-      }     
-      
+      $msg = "Updated";
+      }      
     }
     else{
       DB::table('cart')->insert([
@@ -170,8 +169,8 @@ class FrontController extends Controller
         'product_attr_id'=> $product_attr_id,
         'added_on'=> date('Y-m-d h:i:s')
       ]);
-      $msg = "added";      
-    }
+      $msg = "Added";      
+    }    
     $data = DB::table('cart')
       ->leftjoin('products', 'products.id', '=', 'cart.product_id')
       ->leftjoin('product_attr', 'product_attr.id', '=', 'cart.product_attr_id')
@@ -180,10 +179,8 @@ class FrontController extends Controller
       ->where(['user_id' => $uid])
       ->where(['user_type' => $user_type])
       ->select('products.id as pid','products.title','products.slug','products.image','cart.qty','sizes.size','colors.color','product_attr.price','product_attr.id as attr_id')
-      ->get();
-      // prx($data);
+      ->get();      
       $total_cart = count($data);
-
     return response()->json(["msg"=>$msg,"total_cart"=>$total_cart,"result"=>$data]);
   }
   function cart_page(Request $request){
@@ -202,8 +199,7 @@ class FrontController extends Controller
       ->where(['user_id' => $uid])
       ->where(['user_type' => $user_type])
       ->select('products.id as pid','products.title','products.slug','products.image','cart.qty','sizes.size','colors.color','product_attr.price','product_attr.id as attr_id')
-      ->get();
-    // prx($data);
+      ->get();    
     return view('front/cart',$data);
   }
 

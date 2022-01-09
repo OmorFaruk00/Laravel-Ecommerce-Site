@@ -5,7 +5,6 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">    
   <title>Daily Shop | Home</title>
-
   <!-- Font awesome -->
   <link href="{{asset('front_asset/css/font-awesome.css')}}" rel="stylesheet">
   <!-- Bootstrap -->
@@ -23,15 +22,12 @@
   <!-- <link id="switcher" href="css/theme-color/bridge-theme.css" rel="stylesheet"> -->
   <!-- Top Slider CSS -->
   <link href="{{asset('front_asset/css/sequence-theme.modern-slide-in.css')}}" rel="stylesheet" media="all">    
-  <link href="{{asset('front_asset/css/style.css')}}" rel="stylesheet">    
-
+  <link href="{{asset('front_asset/css/style.css')}}" rel="stylesheet">  
   <!-- Google Font -->
   <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
-
-
-
-  
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script>var PRODUCT_IMAGE = "{{asset('product_img/')}}";</script> 
 
 </head>
 <body> 
@@ -45,8 +41,6 @@
 <!-- SCROLL TOP BUTTON -->
 <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
 <!-- END SCROLL TOP BUTTON -->
-
-
 <!-- Start header section -->
 <header id="aa-header">
   <!-- start header top  -->
@@ -71,7 +65,6 @@
                 </div>
               </div>
               <!-- / language -->
-
               <!-- start currency -->
               <div class="aa-currency">
                 <div class="dropdown">
@@ -108,7 +101,6 @@
     </div>
   </div>
   <!-- / header top  -->
-
   <!-- start header bottom  -->
   <div class="aa-header-bottom">
     <div class="container">
@@ -118,7 +110,7 @@
             <!-- logo  -->
             <div class="aa-logo">
               <!-- Text based logo -->
-              <a href="index.html">
+              <a href="{{url('/')}}">
                 <span class="fa fa-shopping-cart"></span>
                 <p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
               </a>               
@@ -130,14 +122,14 @@
             $total_cart = count($cart_mene);
             $total_price = 0;
             @endphp
-            <div class="aa-cartbox">
-              <a class="aa-cart-link" href="#" id="add_cartbox">
+            <div class="aa-cartbox" id="cartbox">
+              <a class="aa-cart-link" href="#" >
                 <span class="fa fa-shopping-basket"></span>
                 <span class="aa-cart-title">SHOPPING CART</span>
                 <span class="aa-cart-notify">{{$total_cart}}</span>
               </a>
-              @if($total_cart>0)
               <div class="aa-cartbox-summary">
+              @if($total_cart>0)
                 <ul>
                   @foreach($cart_mene as $product)
                   @php
@@ -149,7 +141,7 @@
                       <h4><a href="#">{{$product->title}}</a></h4>
                       <p>{{$product->qty}} x TK {{$product->price}}</p>
                     </div>
-                    <a class="aa-remove-product" href="#"><span class="fa fa-times"></span></a>
+                    <a class="aa-remove-product" href="#"><!-- <span class="fa fa-times"></span></a> -->
                   </li>
                   @endforeach                                    
                   <li>
@@ -162,8 +154,8 @@
                   </li>
                 </ul>
                 <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
-              </div>
               @endif
+              </div>
             </div>
             <!-- / cart box -->
             <!-- search box -->
@@ -389,6 +381,15 @@
     </div>
   </div>
 </div>
+<!-- / Cart view section -->
+ <input type="hidden" id="qty" name="qty" value = 1>
+ <form id="cart_form">
+  @csrf
+  <input type="hidden" id="product_id" name="product_id">
+  <input type="hidden" id="pqty" name="pqty">
+  <input type="hidden" id="size_id" name="size_id">
+  <input type="hidden" id="color_id" name="color_id">
+</form>
 <!-- footer-bottom -->
 <div class="aa-footer-bottom">
   <div class="container">
@@ -432,7 +433,7 @@
       </div>                        
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-</div>    
+</div>  
 
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>

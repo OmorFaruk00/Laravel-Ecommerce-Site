@@ -22,8 +22,9 @@
                       <th>Sub Total</th>
                     </tr>
                   </thead>
-                  @foreach($result as $product)
                   <tbody>
+                  @php $total_price = 0;  @endphp                 
+                  @foreach($result as $product)
                     <tr id="cart_box_{{$product->attr_id}}">
                       <td><a class="remove" href="javascript:void(0)" onclick="cart_item_remove('{{$product->pid}}','{{$product->attr_id}}', '{{$product->color}}', '{{$product->size}}')"><fa class="fa fa-close"></fa></a></td>
                       <td><a href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}"></a></td>
@@ -38,31 +39,21 @@
                       </td>
                       <td>TK {{$product->price}}</td>
                       <td><input class="aa-cart-quantity" id="qty_{{$product->attr_id}}" type="number" value='{{$product->qty}}' onchange="qty_update('{{$product->pid}}','{{$product->attr_id}}', '{{$product->color}}', '{{$product->size}}','{{$product->price}}')"></td>
-                      <td id="total_price_{{$product->pid}}">TK {{$product->qty*$product->price}}</td>                                          
-                    </tr> 
+                      <td id="total_price_{{$product->pid}}">TK {{$product->qty*$product->price}}</td>                        
+                    </tr>
+                  @php $total_price = $total_price+($product->qty*$product->price); @endphp                  
+                  @endforeach
+                  <tr>
+                    <td></td><td></td><td></td><td></td>                        
+                    <td><h4 class="font-weight-bold">Total</h4></td>
+                    <td>TK {{$total_price}}</td>
+                  </tr>                     
                   </tbody>
-                  @endforeach                     
-                </table>                               
+                </table>
                 <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
               </div>                
             </form>
-            <!-- Cart Total view -->
-             <!-- <div class="cart-view-total">
-               <h4>Cart Totals</h4>
-               <table class="aa-totals-table">
-                 <tbody>
-                   <tr>
-                     <th>Subtotal</th>
-                     <td>$450</td>
-                   </tr>
-                   <tr>
-                     <th>Total</th>
-                     <td>$450</td>
-                   </tr>
-                 </tbody>
-               </table>
-               <a href="#" class="aa-cart-view-btn">Proced to Checkout</a>
-             </div> -->
+            <!-- Cart Total view -->             
            </div>
          </div>
        </div>
@@ -72,13 +63,4 @@
  @else
  <div class="text-success h2">No Cart Added</div> 
  @endif
- <!-- / Cart view section -->
- <input type="hidden" id="qty" name="qty" value = 1>
- <form id="cart_form">
-  @csrf
-  <input type="hidden" id="product_id" name="product_id">
-  <input type="hidden" id="pqty" name="pqty">
-  <input type="hidden" id="size_id" name="size_id">
-  <input type="hidden" id="color_id" name="color_id">
-</form>
 @endsection
