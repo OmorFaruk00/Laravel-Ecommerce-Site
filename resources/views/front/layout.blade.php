@@ -128,8 +128,8 @@
                 <span class="aa-cart-title">SHOPPING CART</span>
                 <span class="aa-cart-notify">{{$total_cart}}</span>
               </a>
-              <div class="aa-cartbox-summary">
               @if($total_cart>0)
+              <div class="aa-cartbox-summary">
                 <ul>
                   @foreach($cart_mene as $product)
                   @php
@@ -154,15 +154,15 @@
                   </li>
                 </ul>
                 <a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>
-              @endif
               </div>
+              @endif
             </div>
             <!-- / cart box -->
             <!-- search box -->
             <div class="aa-search-box">
               <form action="">
-                <input type="text" name="" id="" placeholder="Search here ex. 'man' ">
-                <button type="submit"><span class="fa fa-search"></span></button>
+                <input type="text" name="" id="search_str" placeholder="Search here ex. 'man' ">
+                <button type="button" onclick="product_dsearch()"><span class="fa fa-search"></span></button>
               </form>
             </div>
             <!-- / search box -->             
@@ -319,7 +319,7 @@
           <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
           <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
           <div class="aa-register-now">
-            Don't have an account?<a href="account.html">Register now!</a>
+            Don't have an account?<a href="{{url('/signup')}}">Register now!</a>
           </div>
         </form>
       </div>                        

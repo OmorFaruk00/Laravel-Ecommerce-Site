@@ -11,6 +11,9 @@ Route::get("product_detailes/{slug}","FrontController@product");
 Route::get("/cart","FrontController@cart_page");
 Route::post("add_to_cart","FrontController@add_to_cart");
 Route::get('category/{slug}',"Front_CategoryController@category");
+Route::get('search/{str}',"FrontController@product_search");
+Route::view("/signup","front/user_registration");
+Route::post("register_submit","FrontControllerr@user_signup");
 
 Route::view("admin","admin/login");
 Route::post("login_submit","AdminController@login");

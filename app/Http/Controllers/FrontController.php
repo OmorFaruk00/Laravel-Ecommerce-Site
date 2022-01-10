@@ -203,6 +203,29 @@ class FrontController extends Controller
       ->get();    
     return view('front/cart',$data);
   }
-  
+  function product_search(Request $request,$str){
+    $data['product'] = DB::table('products')    
+    ->where(['status' => 1])
+    ->where('title', 'like',"%$str%")   
+    ->orwhere('model', 'like',"%$str%")   
+    ->orwhere('short_desc', 'like',"%$str%")   
+    ->orwhere('desc', 'like',"%$str%") 
+    ->get();
+
+    foreach ($data['product'] as $list) {
+      $data['product_attr'][$list->id] =DB::table('product_attr')
+      ->leftjoin('sizes', 'sizes.id', '=', 'product_attr.size')
+      ->leftjoin('colors', 'colors.id', '=', 'product_attr.color')
+      ->where(['product_attr.product_id' => $list->id])
+      ->get();
+    }
+    // prx($data);
+    return view('front/search_product',$data);
+  }
+
+  function user_signup(Request $request){
+    prx($_POST);
+
+  }
 
 }

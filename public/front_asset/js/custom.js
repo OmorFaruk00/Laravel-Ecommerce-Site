@@ -437,4 +437,27 @@ function cart_item_remove(pid,attr_id,color,size){
  
 }
 // End add to cart
+// product Search 
+function product_dsearch(){
+ var searchstr = $("#search_str").val();
+ if(searchstr !=''){
+  window.location.href = '/search/'+searchstr;
+ }
+}
+// product Search 
+// user Register
+function User_Registration(){
+  alert('s');
+  $.ajax({
+   url:'register_submit',
+    type:'post',
+    data:$("#register_sign_up").serialize(),
+    success:function(data){
+      console.log(data);
+
+    }
+
+  });
+}
+// user Register
 
