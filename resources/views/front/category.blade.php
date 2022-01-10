@@ -35,27 +35,28 @@
             </div>
             <div class="aa-product-catg-body">
               <ul class="aa-product-catg">
-                <!-- start single product item -->
-                <li>
+                @if(isset($product[0]))
+                 @foreach($product as $product)
+                 <li>
                   <figure>
-                    <a class="aa-product-img" href="#"><img src="img/women/girl-1.png" alt="polo shirt img"></a>
-                    <a class="aa-add-card-btn"href="#"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                    <a class="aa-product-img" href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
+                    <a class="aa-add-card-btn"href="javascript:void(0)" onclick="home_add_to_cart('{{$product->id}}','{{$product_attr[$product->id][0]->size}}','{{$product_attr[$product->id][0]->color}}')"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                     <figcaption>
-                      <h4 class="aa-product-title"><a href="#">This is Title</a></h4>
-                      <span class="aa-product-price">$45.50</span><span class="aa-product-price"><del>$65.50</del></span>
-                      <p class="aa-product-descrip">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam accusamus facere iusto, autem soluta amet sapiente ratione inventore nesciunt a, maxime quasi consectetur, rerum illum.</p>
+                      <h4 class="aa-product-title"><a href="{{url('product_detailes/'.$product->slug)}}">{{$product->title}}</a></h4>
+                      <span class="aa-product-price"> BDT {{$product_attr[$product->id][0]->price}} </span><span class="aa-product-price"><del>{{$product_attr[$product->id][0]->mrp}}</del></span>
                     </figcaption>
-                  </figure>                         
-                  <div class="aa-product-hvr-content">
-                    <a href="#" data-toggle="tooltip" data-placement="top" title="Add to Wishlist"><span class="fa fa-heart-o"></span></a>
-                    <a href="#" data-toggle="tooltip" data-placement="top" title="Compare"><span class="fa fa-exchange"></span></a>
-                    <a href="#" data-toggle2="tooltip" data-placement="top" title="Quick View" data-toggle="modal" data-target="#quick-view-modal"><span class="fa fa-search"></span></a>                            
-                  </div>
+                  </figure> 
                   <!-- product badge -->
-                  <span class="aa-badge aa-sale" href="#">SALE!</span>
+                  @if($product_attr[$product->id][0]->discount_by != null)
+                  <span class="aa-badge aa-sale" href="#">-{{$product_attr[$product->id][0]->discount_by}}%</span>   
+                  @endif                           
+                </li> 
+                @endforeach  
+                @else
+                <li>
+                  <h2 class="text-danger">No Data Found</h2>                          
                 </li>
-                <!-- start single product item -->             
-                                                          
+                @endif                                     
               </ul>
               <!-- quick view modal -->                  
               <div class="modal fade" id="quick-view-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

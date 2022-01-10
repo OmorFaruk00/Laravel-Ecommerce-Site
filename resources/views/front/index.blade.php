@@ -212,7 +212,7 @@
                  <li>
                   <figure>
                     <a class="aa-product-img" href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
-                    <a class="aa-add-card-btn"href="{{url('product_detailes/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                    <a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_add_to_cart('{{$product->id}}','{{$tranding_product_attr[$product->id][0]->size}}','{{$tranding_product_attr[$product->id][0]->color}}')"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                     <figcaption>
                       <h4 class="aa-product-title"><a href="{{url('product_detailes/'.$product->slug)}}">{{$product->title}}</a></h4>
                       <span class="aa-product-price"> BDT {{$tranding_product_attr[$product->id][0]->price}} </span><span class="aa-product-price"><del>{{$tranding_product_attr[$product->id][0]->mrp}}</del></span>
@@ -241,7 +241,7 @@
               <li>
                 <figure>
                   <a class="aa-product-img" href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
-                  <a class="aa-add-card-btn"href="{{url('product_detailes/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                  <a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_add_to_cart('{{$product->id}}','{{$feature_product_attr[$product->id][0]->size}}','{{$feature_product_attr[$product->id][0]->color}}')" ><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                   <figcaption>
                     <h4 class="aa-product-title"><a href="{{url('product_detailes/'.$product->slug)}}">{{$product->title}}</a></h4>
                     <span class="aa-product-price"> BDT {{$feature_product_attr[$product->id][0]->price}} </span><span class="aa-product-price"><del>{{$feature_product_attr[$product->id][0]->mrp}}</del></span>
@@ -269,7 +269,7 @@
              <li>
               <figure>
                 <a class="aa-product-img" href="{{url('product_detailes/'.$product->slug)}}"><img src="{{asset('product_img/'.$product->image)}}" alt="image" height="300px"></a>
-                <a class="aa-add-card-btn"href="{{url('product_detailes/'.$product->slug)}}"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
+                <a class="aa-add-card-btn" href="javascript:void(0)" onclick="home_add_to_cart('{{$product->id}}','{{$discount_product_attr[$product->id][0]->size}}','{{$discount_product_attr[$product->id][0]->color}}')"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
                 <figcaption>
                   <h4 class="aa-product-title"><a href="{{url('product_detailes/'.$product->slug)}}">{{$product->title}}</a></h4>
                   <span class="aa-product-price"> BDT {{$discount_product_attr[$product->id][0]->price}} </span><span class="aa-product-price"><del>{{$discount_product_attr[$product->id][0]->mrp}}</del></span>

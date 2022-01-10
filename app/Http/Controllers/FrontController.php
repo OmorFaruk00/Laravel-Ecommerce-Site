@@ -203,12 +203,6 @@ class FrontController extends Controller
       ->get();    
     return view('front/cart',$data);
   }
-  // End add to cart
-  // start category controller
-  function category( Request $request,$slug){
-    return view('front/category');
-
-  }
-  // end category controller
+  
 
 }

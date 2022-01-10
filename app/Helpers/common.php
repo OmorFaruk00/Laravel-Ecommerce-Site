@@ -64,7 +64,8 @@ function build_tree_view($arr,$parent,$level=0, $prelevel=-1){
       if($level==$prelevel){
         $html.='<li>';
       }
-      $html.='<li><a href="category/'.$data['slug'].'">' .$data['name'].'<span class="caret"></span></a>';
+      $html.='<li><a href="/category/'.$data['slug'].'">'.$data['name'].'<span class="caret"></span></a>';
+
       if($level>$prelevel){
         $level=$prelevel;
       }
