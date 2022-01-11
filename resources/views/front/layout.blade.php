@@ -84,7 +84,7 @@
                 <p><span class="fa fa-phone"></span>00-62-658-658</p>
               </div>
               <!-- / cellphone -->
-            </div>
+            </div>            
             <!-- / header top left -->
             <div class="aa-header-top-right">
               <ul class="aa-head-top-nav-right">
@@ -92,7 +92,11 @@
                 <li class="hidden-xs"><a href="wishlist.html">Wishlist</a></li>
                 <li class="hidden-xs"><a href="{{url('/cart')}}">My Cart</a></li>
                 <li class="hidden-xs"><a href="checkout.html">Checkout</a></li>
-                <li><a href="" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                @if(session()->has("User_login")== null)
+                <li><a href="javascript:void(0)" data-toggle="modal" data-target="#login-modal">Login</a></li>
+                @else
+                <li><a href="{{url('/user_logout')}}">Logout</a></li>
+                @endif
               </ul>
             </div>
           </div>
@@ -199,7 +203,6 @@
 <!-- / menu -->
  @section("container")
  @show
-
 <!-- footer -->  
 <footer id="aa-footer">
   <!-- footer bottom -->
@@ -302,7 +305,17 @@
 </div>
 </footer>
 <!-- / footer -->
-
+@php
+if(isset($_COOKIE['user_email']) && isset($_COOKIE['user_password'])){
+  $user_email = $_COOKIE['user_email'];
+  $user_password = $_COOKIE['user_password'];
+  $is_checked ="checked='checked'";
+}else{
+  $user_email = '';
+  $user_password = '';
+  $is_checked ="";
+}
+@endphp
 <!-- Login Modal -->  
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -310,13 +323,15 @@
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4>Login or Register</h4>
-        <form class="aa-login-form" action="">
+        <form class="aa-login-form" id="from_login">
+          @csrf
           <label for="">Username or Email address<span>*</span></label>
-          <input type="text" placeholder="Username or email">
+          <input type="text" placeholder="Email" name="user_email" value="{{$user_email}}">
           <label for="">Password<span>*</span></label>
-          <input type="password" placeholder="Password">
+          <input type="password" placeholder="Password" name="user_password" value="{{$user_password}}">          
           <button class="aa-browse-btn" type="submit">Login</button>
-          <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Remember me </label>
+          <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme" name="rememberme" {{$is_checked }}> Remember me </label>
+          <div id="login_msg" class="text-danger"></div>
           <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
           <div class="aa-register-now">
             Don't have an account?<a href="{{url('/signup')}}">Register now!</a>

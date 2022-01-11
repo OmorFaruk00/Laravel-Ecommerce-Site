@@ -13,7 +13,8 @@ Route::post("add_to_cart","FrontController@add_to_cart");
 Route::get('category/{slug}',"Front_CategoryController@category");
 Route::get('search/{str}',"FrontController@product_search");
 Route::view("/signup","front/user_registration");
-Route::post("register_submit","FrontControllerr@user_signup");
+Route::post("user_registration","FrontController@registration_process");
+Route::post("user_login","FrontController@login_process");
 
 Route::view("admin","admin/login");
 Route::post("login_submit","AdminController@login");
@@ -71,4 +72,10 @@ Route::group(['middleware'=>['admin_auth']], function(){
 Route::get('logout', function () {
 	session()->forget('ADMIN_ID');
 	return redirect('admin');
+});
+Route::get('/user_logout', function () {
+	session()->forget("User_login");
+    session()->forget("User_id");
+    session()->forget("User_name");
+	return redirect('/');
 });

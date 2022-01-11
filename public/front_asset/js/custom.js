@@ -374,8 +374,8 @@ function add_to_cart(id,size,color){
  if(size =='' && color ==''){
   size ="no";
   color="no";
- }
- if(size == '' && size!= 'no'){  
+}
+if(size == '' && size!= 'no'){  
   $('#cart_msg').html('please select size');
 }
 else if(color == '' && color != 'no'){
@@ -389,8 +389,8 @@ else{
     type:'post',
     data:$("#cart_form").serialize(),
     success:function(data){
-    var total_price = 0; 
-    swal({title: 'Cart '+data.msg, text: 'Done...', icon: 'success', timer: 2000, buttons: false, });
+      var total_price = 0; 
+      swal({title: 'Cart '+data.msg, text: 'Done...', icon: 'success', timer: 2000, buttons: false, });
     // alert('product '+data.msg);
     if(data.total_cart == 0){
       $(".aa-cart-notify").html(0);
@@ -402,17 +402,17 @@ else{
       $.each(data.result, function(key,val){
        total_price = parseInt(total_price)+(parseInt(val.qty) * parseInt(val.price));
        html +='<li><a class="aa-cartbox-img" href="#"><img src="'+PRODUCT_IMAGE+'/'+val.image+'" alt="img"></a><div class="aa-cartbox-info"><h4><a href="#">'+val.title+'</a></h4><p>'+val.qty+' x TK '+val.price+'</p></div><a class="aa-remove-product" href="javascript:void(0)"></span></a></li>';
-      });     
+     });     
 
     }
     html+='<li><span class="aa-cartbox-total-title">Total</span><span class="aa-cartbox-total-price">'+total_price+'</span></li>';
     html+='<a class="aa-cartbox-checkout aa-primary-btn" href="checkout.html">Checkout</a>'
     html+='</ul>';  
-      $(".aa-cartbox-summary").html(html);
-          
-       
-    }
-  });
+    $(".aa-cartbox-summary").html(html);
+
+
+  }
+});
 }
 }
 function home_add_to_cart(id,size,color){
@@ -442,22 +442,48 @@ function product_dsearch(){
  var searchstr = $("#search_str").val();
  if(searchstr !=''){
   window.location.href = '/search/'+searchstr;
- }
+}
 }
 // product Search 
 // user Register
-function User_Registration(){
-  alert('s');
+$("#register_sign_up").submit(function(e){
+  e.preventDefault();
+  $('.field_error').html('');
   $.ajax({
-   url:'register_submit',
+    url:'user_registration',
     type:'post',
     data:$("#register_sign_up").serialize(),
     success:function(data){
-      console.log(data);
-
+      if(data.status == "error"){
+        $.each(data.error, function(key,val){
+          $('#'+key+'_error').html(val);
+        });
+      }
+      if(data.status == "success"){
+        $("#register_sign_up")[0].reset();
+        swal({title: 'Registration Successfully', text: 'Congraculation...', icon: 'success', timer: 2000, buttons: false, });
+      }
     }
-
   });
-}
+});
 // user Register
+$("#from_login").submit(function(e){
+  e.preventDefault(); 
+  $("#login_msg").html(""); 
+  $.ajax({
+    url:'user_login',
+    type:'post',
+    data:$("#from_login").serialize(),
+    success:function(data){
+      if(data.status == "error"){
+        $("#login_msg").html(data.msg);
 
+      }
+      if(data.status == "success"){
+        window.location.href = '/';
+        $("#login_msg").html(data.msg);
+
+      }
+    }
+  });
+});
