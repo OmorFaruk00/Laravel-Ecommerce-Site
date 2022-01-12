@@ -1,20 +1,44 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\Http\Controllers\Front\cartController;
+use App\Http\Controllers\FrontController;
+use App\Http\Controllers\Front_CategoryController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ test;
 
 
-Route::get("ok", [cartController::class,"hello"]);
 
-Route::get("/", "FrontController@index");
-Route::get("product_detailes/{slug}","FrontController@product");
-Route::get("/cart","FrontController@cart_page");
-Route::post("add_to_cart","FrontController@add_to_cart");
-Route::get('category/{slug}',"Front_CategoryController@category");
-Route::get('search/{str}',"FrontController@product_search");
+
+Route::get("/", [FrontController::class,'index']);
+Route::get("product_detailes/{slug}",[FrontController::class,"product"]);
+Route::get("/cart",[FrontController::class,"cart_page"]);
+Route::post("add_to_cart",[FrontController::class,"add_to_cart"]);
+Route::get('category/{slug}',[Front_CategoryController::class,"category"]);
+Route::get('search/{str}',[FrontController::class,"product_search"]);
 Route::view("/signup","front/user_registration");
-Route::post("user_registration","FrontController@registration_process");
-Route::post("user_login","FrontController@login_process");
+
+// Route::post("user_registration",[FrontController::class,"registration_process"]);
+// Route::post("user_login",[FrontController::class,"login_process"]);
+// Route::get("verification/{id}",[FrontController::class,"verification_process"]);
+
+Route::post("user_registration",[UserController::class,"registration_process"]);
+Route::post("user_login",[UserController::class,"login_process"]);
+Route::get("verification/{id}",[UserController::class,"verification_process"]);
+
+Route::get("ok",[UserController::class,"index"]);
+
+
+// Route::get("/", "FrontController@index");
+// Route::get("product_detailes/{slug}","FrontController@product");
+// Route::get("/cart","FrontController@cart_page");
+// Route::post("add_to_cart","FrontController@add_to_cart");
+// Route::get('category/{slug}',"Front_CategoryController@category");
+// Route::get('search/{str}',"FrontController@product_search");
+// Route::view("/signup","front/user_registration");
+// Route::post("user_registration","FrontController@registration_process");
+// Route::post("user_login","FrontController@login_process");
+// Route::get("verification/{id}","FrontController@verification_process");
+// Route::view('verification','front/verification');
 
 Route::view("admin","admin/login");
 Route::post("login_submit","AdminController@login");

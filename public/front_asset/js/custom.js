@@ -449,6 +449,7 @@ function product_dsearch(){
 $("#register_sign_up").submit(function(e){
   e.preventDefault();
   $('.field_error').html('');
+  $('reg_msg').html('');
   $.ajax({
     url:'user_registration',
     type:'post',
@@ -461,7 +462,7 @@ $("#register_sign_up").submit(function(e){
       }
       if(data.status == "success"){
         $("#register_sign_up")[0].reset();
-        swal({title: 'Registration Successfully', text: 'Congraculation...', icon: 'success', timer: 2000, buttons: false, });
+        $('#reg_msg').html(data.msg);
       }
     }
   });
