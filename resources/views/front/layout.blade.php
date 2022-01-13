@@ -322,21 +322,37 @@ if(isset($_COOKIE['user_email']) && isset($_COOKIE['user_password'])){
     <div class="modal-content">                      
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div id="login_popup">
+          <form class="aa-login-form" id="from_login">
         <h4>Login or Register</h4>
-        <form class="aa-login-form" id="from_login">
           @csrf
-          <label for="">Username or Email address<span>*</span></label>
+          <label for=""> Email address<span>*</span></label>
           <input type="text" placeholder="Email" name="user_email" value="{{$user_email}}">
           <label for="">Password<span>*</span></label>
           <input type="password" placeholder="Password" name="user_password" value="{{$user_password}}">          
           <button class="aa-browse-btn" type="submit">Login</button>
           <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme" name="rememberme" {{$is_checked }}> Remember me </label>
           <div id="login_msg" class="text-danger"></div>
-          <p class="aa-lost-password"><a href="#">Lost your password?</a></p>
+          <p class="aa-lost-password"><a href="javascript:void(0)" onclick="forgot_password_popup()">Forgot Password?</a></p>
           <div class="aa-register-now">
             Don't have an account?<a href="{{url('/signup')}}">Register now!</a>
           </div>
         </form>
+        </div>
+        <div id="forgot_popup" style="display:none">
+          <form class="aa-login-form" id="forgot_password_from">
+          <h4>Fotgot Password</h4>
+          @csrf
+          <label for=""> Email address<span>*</span></label>
+          <input type="text" placeholder="Email" name="forgot_email"><br><br>
+          <div id="forgot_msg" class="text-danger"></div>        
+          <button class="aa-browse-btn" type="submit" id="forgot_password">Submit</button><br><br>
+          <div class="aa-register-now">
+            Login Here?<a href="javascript:void(0)" onclick="login_from_popup()">Login!</a>
+          </div>
+        </form>
+          
+        </div>
       </div>                        
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->

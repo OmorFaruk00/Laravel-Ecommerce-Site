@@ -35,7 +35,7 @@ class FrontController extends Controller
       }
 
     }
-  //start tranding product
+  // tranding productt function start here
     $data['home_tranding_product'][$list->id] = DB::table('products')
     ->where(['status' => 1])
     ->where(['tranding' => 1])
@@ -48,8 +48,8 @@ class FrontController extends Controller
       ->where(['product_attr.product_id' => $list1->id])
       ->get();
     }
-    //End tranding product
-    //Start featured product
+
+  // featured product function start here
     $data['home_feature_product'][$list->id] = DB::table('products')
     ->where(['status' => 1])
     ->where(['feature' => 1])
@@ -62,8 +62,7 @@ class FrontController extends Controller
       ->where(['product_attr.product_id' => $list1->id])
       ->get();
     }
-    //End featured product
-    //Start featured product
+   // discount product function start here     
     $data['home_discount_product'][$list->id] = DB::table('products')
     ->where(['status' => 1])
     ->where(['discount' => 1])
@@ -76,16 +75,15 @@ class FrontController extends Controller
       ->where(['product_attr.product_id' => $list1->id])
       ->get();
     }
-    //End featured product
 
-
+// home brand function start here
     $data['home_brand'] = DB::table('brands')
     ->where(['status' => 1])
     ->get();
-
     return view("front/index",$data);
   } 
-  public function product(Request $request,$slug){
+  // product_detailes function start here
+  public function product_detailes(Request $request,$slug){
     $data['product'] = DB::table('products')
     ->where(['status' => 1])
     ->where(['slug' => $slug])
@@ -103,7 +101,7 @@ class FrontController extends Controller
       ->where(['product_attr_img.product_id' => $list->id])
       ->get();
     }
-       //Start related product
+       // related product function start here
     $data['related_product'] = DB::table('products')
     ->where(['status' => 1])
     ->where('slug','!=', $slug)
@@ -120,7 +118,7 @@ class FrontController extends Controller
     return view('front/product_detailes',$data);
 
   }
-  // add to cart 
+  //  add to cart function start here
   public function add_to_cart(Request $request)
   {    
     if($request->session()->has('User_id')){
@@ -129,8 +127,7 @@ class FrontController extends Controller
     }else{      
       $uid = user_temp_id();
       $user_type = "No Reg";        
-    }   
-    
+    } 
     $product_id = $request->post('product_id');
     $qty = $request->post('pqty');
     $size = $request->post('size_id');
@@ -187,6 +184,7 @@ class FrontController extends Controller
     $total_cart = count($data);
     return response()->json(["msg"=>$msg,"total_cart"=>$total_cart,"result"=>$data]);
   }
+  //  cart page function start here
   function cart_page(Request $request){
     if($request->session()->has('User_id')){
       $uid = $request->session()->get('User_id');
@@ -206,6 +204,7 @@ class FrontController extends Controller
     ->get();    
     return view('front/cart',$data);
   }
+  //  product search function start here
   function product_search(Request $request,$str){
     $data['product'] = DB::table('products')    
     ->where(['status' => 1])
@@ -224,6 +223,7 @@ class FrontController extends Controller
     }    
     return view('front/search_product',$data);
   }
+  //  registration process function start here
   function registration_process(Request $request){
    $valid = validator::make($request->all(),[
     "first_name"=>'required',
@@ -244,7 +244,8 @@ class FrontController extends Controller
       "phone"=>$request->mobile,
       "status"=>1,
       "is_verify"=>0,
-      "rand_id"=>$rand_id
+      "rand_id"=>$rand_id,
+      "forgot_pass"=>0
     ]);
     if($result){
       $user['to'] = $request->email;
@@ -254,11 +255,11 @@ class FrontController extends Controller
         $message->subject("Email Id Varification");
 
       });
-      return response()->json(['status'=>'success', "msg"=>"Registration Successfully, Plesae check your email id for varification"]);
+      return response()->json(['status'=>'success', "msg"=>"Registration Successfully, Plesae Check Your Email Id For Verification"]);
     }
   }
 }
-
+// login process function start here
 function login_process(Request $request){
   $user_email = $request->user_email;
   $user_password = $request->user_password;
@@ -298,25 +299,74 @@ function login_process(Request $request){
     $msg = "Please Enter Vailed Email Id";
   }
   return response()->json(['status'=>$status, "msg"=>$msg]);
-
 }
+// Email verification function start here
 function verification_process(Request $request,$id){
   $result = DB::table('customers')  
   ->where(['rand_id' => $id])
   ->get();
 
-  if($result[0]){
-     DB::table('customers')  
-  ->where(['rand_id' => $id])
-  ->update(['is_verify' => 1]);
-  return view('front/verification');
-  
+  if(isset($result[0])){
+   DB::table('customers')  
+   ->where(['id' => $result[0]->id])
+   ->update(['is_verify' => 1, "rand_id" => 0]);
+   return view('front/verification');
+
+ }else{
+  return redirect('/');
+}
+}
+
+// forgot password  function start here
+
+function forgot_password(Request $request){
+  $forgot_email = $request->forgot_email;
+  $result = DB::table('customers')  
+  ->where(['email' => $forgot_email])
+  ->where(['is_verify' => 1])
+  ->get();
+  $rand_id = rand(111111111,999999999);
+  if(isset($result[0])){    
+    DB::table('customers')  
+    ->where(['email' => $forgot_email])
+    ->update(['forgot_pass' => 1, "rand_id" => $rand_id]);
+    $user['to'] = $forgot_email;
+    $data = ['name' =>$result[0]->first_name, "rand_id"=>$rand_id];
+    Mail::send('front/password_verification', $data, function($message) use($user){
+      $message->to($user['to']);
+      $message->subject("Forgot Password Varification");
+    });
+    $status = "error";
+    $msg = "Plesae Check Your Email Id For Verification";    
   }else{
-    return redirect('/');
+    $status = "error";
+    $msg = "Please Enter Your Correct Email Id";    
   }
+  return response()->json(['status'=>$status, "msg"=>$msg]);
 }
 
 
 
+function forgot_password_change(Request $request,$id){
+  $result = DB::table('customers')->where(['rand_id' => $id])->where(['forgot_pass' => 1])->get();
+  if(isset($result[0])){
+    $request->session()->put("FP_user_id",$result[0]->id);
+    return view('front/forgot_password');
+  }
+   else{
+    return redirect('/');
+  
+}
+}
+
+public function forgot_password_change_process(Request $request){
+  $user_id =$id = session()->get("FP_user_id");   
+   $password = Crypt::encrypt($request->user_password);  
+   $result = DB::table('customers')
+   ->where(['id' => $user_id])
+   ->where(['forgot_pass' => 1])
+   ->update(['forgot_pass' => 0,'rand_id' => 0,'password' => $password]);
+   
+}
 
 }

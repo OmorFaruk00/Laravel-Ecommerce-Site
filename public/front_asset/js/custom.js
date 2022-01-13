@@ -436,7 +436,6 @@ function cart_item_remove(pid,attr_id,color,size){
  add_to_cart(pid,color,size); 
  
 }
-// End add to cart
 // product Search 
 function product_dsearch(){
  var searchstr = $("#search_str").val();
@@ -444,12 +443,11 @@ function product_dsearch(){
   window.location.href = '/search/'+searchstr;
 }
 }
-// product Search 
 // user Register
 $("#register_sign_up").submit(function(e){
   e.preventDefault();
   $('.field_error').html('');
-  $('reg_msg').html('');
+  $('reg_msg').html('');  
   $.ajax({
     url:'user_registration',
     type:'post',
@@ -467,9 +465,10 @@ $("#register_sign_up").submit(function(e){
     }
   });
 });
-// user Register
+// user Login 
 $("#from_login").submit(function(e){
   e.preventDefault(); 
+  $("#login_msg").html("Please Wait....."); 
   $("#login_msg").html(""); 
   $.ajax({
     url:'user_login',
@@ -485,6 +484,46 @@ $("#from_login").submit(function(e){
         $("#login_msg").html(data.msg);
 
       }
+    }
+  });
+});
+// forgot password
+function forgot_password_popup(){
+  $("#forgot_popup").show();
+  $("#login_popup").hide();
+}
+function login_from_popup(){
+  $("#forgot_popup").hide();
+  $("#login_popup").show();
+}
+$("#forgot_password_from").submit(function(e){
+  e.preventDefault();
+  $("#forgot_msg").html(""); 
+  $.ajax({
+    url:'forgot_password_process',
+    type:'post',
+    data:$("#forgot_password_from").serialize(),
+    success:function(data){
+      console.log(data);
+      if(data.status == "error"){
+        $("#forgot_msg").html(data.msg);
+      }
+      if(data.status == "success"){
+        window.location.href = window.location.href;
+        $("#forgot_msg").html(data.msg);
+      }
+    }
+  });
+});
+
+$("#change_password").submit(function(e){
+  e.preventDefault();
+  $.ajax({
+    url:'/change_password',
+    type:'post',
+    data:$("#change_password").serialize(),
+    success:function(data){
+      window.location.href = '/';
     }
   });
 });
